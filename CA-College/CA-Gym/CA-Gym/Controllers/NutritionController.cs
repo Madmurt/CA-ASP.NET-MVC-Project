@@ -9,7 +9,7 @@ namespace CA_Gym.Controllers
     public class NutritionController : Controller
     {
         // GET: Nutrition
-        public ActionResult Nutrtion()
+        public ActionResult Nutrition()
         {
             return View();
         }
