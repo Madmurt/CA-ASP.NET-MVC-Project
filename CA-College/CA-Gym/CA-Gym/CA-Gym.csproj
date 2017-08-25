@@ -92,6 +92,7 @@
     <Content Include="Content\Images\image1.jpeg" />
     <Content Include="Content\Images\image2.jpeg" />
     <Content Include="Content\Images\image3.jpeg" />
+    <Content Include="Content\Images\image6.jpeg" />
     <Content Include="Content\Images\laptop.png" />
     <Content Include="Content\Images\lights.jpg" />
     <Content Include="Content\Images\media.jpg" />
@@ -101,8 +102,14 @@
     <Content Include="Content\Images\person4.jpg" />
     <Content Include="Content\Images\image4.jpeg" />
     <Content Include="Content\Images\image5.jpeg" />
+    <Content Include="Content\Images\person5.jpg" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\main.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -114,6 +121,7 @@
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NutritionController.cs" />
+    <Compile Include="Controllers\PricesController.cs" />
     <Compile Include="Controllers\TrainersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -125,12 +133,13 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Facilities\Index.cshtml" />
-    <Content Include="Views\Classes\Index.cshtml" />
-    <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Exercise\Index.cshtml" />
-    <Content Include="Views\Nutrition\Index.cshtml" />
-    <Content Include="Views\Trainers\Index.cshtml" />
+    <Content Include="Views\Facilities\Facilities.cshtml" />
+    <Content Include="Views\Classes\Classes.cshtml" />
+    <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Exercise\Exercise.cshtml" />
+    <Content Include="Views\Nutrition\Nutrition.cshtml" />
+    <Content Include="Views\Trainers\Trainers.cshtml" />
+    <Content Include="Views\Prices\Prices.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

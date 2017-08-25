@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace CA_Gym.Controllers
 {
-    public class FacilitiesController : Controller
+    public class PricesController : Controller
     {
-        // GET: Facilities
-        public ActionResult Facilities()
+        // GET: Prices
+        public ActionResult Prices()
         {
             return View();
         }

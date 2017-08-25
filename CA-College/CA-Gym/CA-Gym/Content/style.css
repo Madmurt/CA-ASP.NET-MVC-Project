@@ -5,11 +5,6 @@
     padding-right: 1em !important;
 }
 
-nav ul li {
-    display: inline;
-    margin-left: 10px;
-}
-
 .navbar .nav-item.active {
     border-left: #444 3px solid;
 }
@@ -85,22 +80,23 @@ nav ul li {
 
 #page-header {
     height: 200px;
-    background: url("Images/image1.jpg");
-    background-position: 0 -360px;
+    background: url("Images/image6.jpeg");
+    background-position:0 60%;
     background-attachment: fixed;
     color: #fff;
     border-bottom: 1px #eee solid;
     padding-top: 50px;
 }
 
+
 #about img {
     margin-top: -50px;
 }
 
 #services .fa {
-    font-size: 35px !important;
+    font-size: 20px !important;
 }
-
+/*
 #faq.bg-dark {
     background: #444;
     color: #ffffff;
@@ -118,4 +114,4 @@ nav ul li {
 #faq.bg-dark .card-block,
 #faq.bg-dark .card-header {
     background: #333;
-}
+}*/

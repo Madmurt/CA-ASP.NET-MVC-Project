@@ -9,7 +9,7 @@ namespace CA_Gym.Controllers
     public class ClassesController : Controller
     {
         // GET: Classes
-        public ActionResult Index()
+        public ActionResult Classes()
         {
             return View();
         }
