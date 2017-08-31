@@ -92,6 +92,11 @@
     <Content Include="Content\flaticon.css" />
     <Content Include="Content\fonts\flaticon.html" />
     <Content Include="Content\fonts\Flaticon.svg" />
+    <Content Include="Content\Images\exercise1.jpeg" />
+    <Content Include="Content\Images\exercise2.jpeg" />
+    <Content Include="Content\Images\exercise3.jpeg" />
+    <Content Include="Content\Images\exercise4.jpeg" />
+    <Content Include="Content\Images\exercise5.jpeg" />
     <Content Include="Content\Images\facilities1.jpeg" />
     <Content Include="Content\Images\facilities2.jpg" />
     <Content Include="Content\Images\facilities3.jpg" />
@@ -143,6 +148,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
