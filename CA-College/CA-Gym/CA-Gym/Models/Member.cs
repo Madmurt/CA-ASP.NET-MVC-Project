@@ -7,10 +7,16 @@ namespace CA_Gym.Models
 {
     public class Member
     {
-        public int memTypeID { get; set; }
-        public string email { get; set; }
-        public string memPass { get; set; }
-        public string firstName { get; set; }
-        public string MyProperty { get; set; }
+        public int MemberID { get; set; }
+        public int TypeID { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Gender { get; set; }
+        public int Age { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public int isAdmin { get; set; }
     }
 }
