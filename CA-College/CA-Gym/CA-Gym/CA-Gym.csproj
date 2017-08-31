@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\DAO.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberShipType.cs" />
     <Compile Include="Models\PTSession.cs" />
@@ -171,6 +172,7 @@
     <Content Include="Views\Nutrition\Nutrition.cshtml" />
     <Content Include="Views\Trainers\Trainers.cshtml" />
     <Content Include="Views\Prices\Prices.cshtml" />
+    <Content Include="Views\Trainers\AddTrainer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
