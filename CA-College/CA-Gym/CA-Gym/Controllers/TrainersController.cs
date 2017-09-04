@@ -32,7 +32,7 @@ namespace CA_Gym.Controllers
                 }
                 return View("Status");
             }
-            return View();
+            return View(trainer);
         }
     }
 }
