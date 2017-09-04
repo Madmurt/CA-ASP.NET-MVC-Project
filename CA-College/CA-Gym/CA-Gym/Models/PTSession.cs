@@ -7,14 +7,27 @@ namespace CA_Gym.Models
 {
     public class PTSession
     {
-        public int ptSessionID { get; set; }
-        public int trainerID { get; set; }
-        public int memberID { get; set; }
-        public string sessionLength { get; set; }
-        public string sessionDate { get; set; }
-        public string sessionTime { get; set; }
-        public string sessType { get; set; }
-        public decimal cost { get; set; }
-        public string sessLocation { get; set; }
+        public int PtSessionID { get; set; }
+        public int TrainerID { get; set; }
+        public int MemberID { get; set; }
+        public string SessionLength { get; set; }
+        public string SessionDate { get; set; }
+        public string SessionTime { get; set; }
+        public string SessType { get; set; }
+        public decimal Cost { get; set; }
+        public string SessLocation { get; set; }
+
+        public PTSession(int ptSessionID, int trainerID, int memberID, string sessionLength, string sessionDate, string sessionTime, string sessType, decimal cost, string sessLocation)
+        {
+            PtSessionID = ptSessionID;
+            TrainerID = trainerID;
+            MemberID = memberID;
+            SessionLength = sessionLength;
+            SessionDate = sessionDate;
+            SessionTime = sessionTime;
+            SessType = sessType;
+            Cost = cost;
+            SessLocation = sessLocation;
+        }
     }
 }

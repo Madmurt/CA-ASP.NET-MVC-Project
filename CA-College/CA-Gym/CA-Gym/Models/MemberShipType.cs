@@ -7,10 +7,19 @@ namespace CA_Gym.Models
 {
     public class MemberShipType
     {
-        public int memTypeID { get; set; }
-        public string memType { get; set; }
-        public string joinDate { get; set; }
-        public string renewalDate { get; set; }
-        public string gymLocation { get; set; }
+        public int MemTypeID { get; set; }
+        public string MemType { get; set; }
+        public string JoinDate { get; set; }
+        public string RenewalDate { get; set; }
+        public string GymLocation { get; set; }
+
+        public MemberShipType(int memTypeID, string memType, string joinDate, string renewalDate, string gymLocation)
+        {
+            MemTypeID = memTypeID;
+            MemType = memType;
+            JoinDate = joinDate;
+            RenewalDate = renewalDate;
+            GymLocation = gymLocation;
+        }
     }
 }

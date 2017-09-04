@@ -7,10 +7,18 @@ namespace CA_Gym.Models
 {
     public class Trainer
     {
-        public string name { get; set; }
-        public int age { get; set; }
-        public string gender { get; set; }
-        public string speciality { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
+        public string Speciality { get; set; }
+
+        public Trainer(string n, int a, string gen, string spec)
+        {
+            Name = n;
+            Age = a;
+            Gender = gen;
+            Speciality = spec;
+        }
 
     }
 }

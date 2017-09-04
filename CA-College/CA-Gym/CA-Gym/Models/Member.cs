@@ -17,6 +17,21 @@ namespace CA_Gym.Models
         public int Age { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public int isAdmin { get; set; }
+        public int IsAdmin { get; set; }
+
+        public Member(int memberID, int typeID, string email, string password, string firstName, string lastName, string gender, int age, string phone, string address, int isAdmin)
+        {
+            MemberID = memberID;
+            TypeID = typeID;
+            Email = email;
+            Password = password;
+            FirstName = firstName;
+            LastName = lastName;
+            Gender = gender;
+            Age = age;
+            Phone = phone;
+            Address = address;
+            IsAdmin = isAdmin;
+        }
     }
 }

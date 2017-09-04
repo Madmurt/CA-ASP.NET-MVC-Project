@@ -66,10 +66,10 @@ namespace CA_Gym.Models
             Connection();
             cmd = new SqlCommand("uspInsertTrainerTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@name", trainer.name);
-            cmd.Parameters.AddWithValue("@age", trainer.age);
-            cmd.Parameters.AddWithValue("@gender", trainer.gender);
-            cmd.Parameters.AddWithValue("@specialty", trainer.speciality);
+            cmd.Parameters.AddWithValue("@name", trainer.Name);
+            cmd.Parameters.AddWithValue("@age", trainer.Age);
+            cmd.Parameters.AddWithValue("@gender", trainer.Gender);
+            cmd.Parameters.AddWithValue("@specialty", trainer.Speciality);
 
             try
             {
