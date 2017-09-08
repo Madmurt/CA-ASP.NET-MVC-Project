@@ -88,5 +88,133 @@ namespace CA_Gym.Models
             return count;
         }
 
+        public int Insert(Class c)
+        {
+            //count shows the number of affected rows
+            int count = 0;
+            SqlCommand cmd;
+            Connection();
+            cmd = new SqlCommand("uspInsertClassTable", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@trainerID", trainer.ID); How to add this from drop down list? 
+            //SELECT trainerID FROM Trainer WHERE Name = etc.;
+            cmd.Parameters.AddWithValue("@time", c.Time);
+            cmd.Parameters.AddWithValue("@classType", c.ClassType);
+            cmd.Parameters.AddWithValue("@location", c.Location);
+            cmd.Parameters.AddWithValue("@maxMembers", c.MaxMembers);
+
+            try
+            {
+                conn.Open();
+                count = cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return count;
+        }
+
+        public int Insert(MemberShipType mType)
+        {
+            //count shows the number of affected rows
+            int count = 0;
+            SqlCommand cmd;
+            Connection();
+            cmd = new SqlCommand("uspInsertMembershipTypeTable", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@memType", mType.MemType);
+            cmd.Parameters.AddWithValue("@joinDate", mType.JoinDate);
+            cmd.Parameters.AddWithValue("@renewalDate", mType.RenewalDate);
+            cmd.Parameters.AddWithValue("@gymLocation", mType.GymLocation);
+
+            try
+            {
+                conn.Open();
+                count = cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return count;
+        }
+
+        public int Insert(Booking book)
+        {
+            //count shows the number of affected rows
+            int count = 0;
+            SqlCommand cmd;
+            Connection();
+            cmd = new SqlCommand("uspInsertBookingTable", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@classID", book.ClassID);
+            //SELECT classID FROM Class WHERE location,classType,Time = etc.;
+            //cmd.Parameters.AddWithValue("@memberID", book.MemberID); Use logged in member ID.
+            cmd.Parameters.AddWithValue("@date", book.Date);
+            cmd.Parameters.AddWithValue("@time", book.Time);
+
+            try
+            {
+                conn.Open();
+                count = cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return count;
+        }
+
+        public int Insert(PTSession ptSess)
+        {
+            //count shows the number of affected rows
+            int count = 0;
+            SqlCommand cmd;
+            Connection();
+            cmd = new SqlCommand("uspInsertPTSessionTable", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@trainerID", ptSess.TrainerID);
+            //SELECT trainerID FROM Trainer WHERE Name = etc.;
+            //cmd.Parameters.AddWithValue("@memberID", ptSess.MemberID); Use logged in member ID.
+            cmd.Parameters.AddWithValue("@sessionLength", ptSess.SessionLength);
+            cmd.Parameters.AddWithValue("@sesionDate", ptSess.SessionDate);
+            cmd.Parameters.AddWithValue("@sessionTime", ptSess.SessionTime);
+            cmd.Parameters.AddWithValue("@sessType", ptSess.SessType);
+            cmd.Parameters.AddWithValue("@Cost", ptSess.Cost);
+            cmd.Parameters.AddWithValue("@sessLocation", ptSess.SessLocation);
+
+            try
+            {
+                conn.Open();
+                count = cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return count;
+        }
+
     }
 }
