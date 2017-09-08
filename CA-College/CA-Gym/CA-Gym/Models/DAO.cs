@@ -69,7 +69,7 @@ namespace CA_Gym.Models
             cmd.Parameters.AddWithValue("@name", trainer.Name);
             cmd.Parameters.AddWithValue("@age", trainer.Age);
             cmd.Parameters.AddWithValue("@gender", trainer.Gender);
-            cmd.Parameters.AddWithValue("@specialty", trainer.Speciality);
+            cmd.Parameters.AddWithValue("@speciality", trainer.Speciality);
 
             try
             {

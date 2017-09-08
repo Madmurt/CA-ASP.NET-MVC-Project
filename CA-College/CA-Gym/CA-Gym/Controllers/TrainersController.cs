@@ -16,6 +16,12 @@ namespace CA_Gym.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult AddTrainer()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult AddTrainer(Trainer trainer)
         {

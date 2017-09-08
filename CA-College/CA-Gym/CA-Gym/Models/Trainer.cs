@@ -12,6 +12,11 @@ namespace CA_Gym.Models
         public string Gender { get; set; }
         public string Speciality { get; set; }
 
+        public Trainer()
+        {
+
+        }
+
         public Trainer(string n, int a, string gen, string spec)
         {
             Name = n;
