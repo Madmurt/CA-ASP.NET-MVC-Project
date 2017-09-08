@@ -4,31 +4,50 @@
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
-<div>
-    @using (Html.BeginForm("AddTrainer", "Trainers", FormMethod.Post))
-    {
-        @Html.ValidationSummary(false, "", new { @class = "error" })
-        <p>
-            @Html.LabelFor(u => u.Name)
-            @Html.TextBoxFor(u => u.Name)
-        </p>
-        <p>
-            @Html.LabelFor(u => u.Age)
-            @Html.TextBoxFor(u => u.Age)
-        </p>
-        <p>
-            @Html.LabelFor(u => u.Gender)
-            @Html.TextBoxFor(u => u.Gender)
-        </p>
-        <p>
-            @Html.LabelFor(u => u.Speciality)
-            @Html.TextBoxFor(u => u.Speciality)
-        </p>
-        <p>
-            <input id="Submit1" type="submit" value="Register" />
-            <input id="Reset1" type="reset" value="Clear" />
-        </p>
-    }
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 offset-md-3">
+            @using (Html.BeginForm("AddTrainer", "Trainers", FormMethod.Post))
+            {
+                <form class="form-group ">
+                    <h2 class="display-4 py-3 mt-4">Add New Trainer</h2>
+                    @Html.ValidationSummary(false, "", new { @class = "error" })
+
+                    <div class="form-group row">
+                        @Html.LabelFor(u => u.Name, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(u => u.Name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        @Html.LabelFor(u => u.Age, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(u => u.Age, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(u => u.Gender, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(u => u.Gender, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(u => u.Speciality, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(u => u.Speciality, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <input id="Submit1" type="submit" value="Add Trainer" class="btn btn-success" />
+                    <input id="Reset1" type="reset" value="Clear Form" class="btn btn-danger" />
+
+                </form>
+            }
+        </div>
+    </div>
     
 </div>
 
