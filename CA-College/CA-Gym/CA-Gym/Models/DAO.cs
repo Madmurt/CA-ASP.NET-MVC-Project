@@ -237,5 +237,38 @@ namespace CA_Gym.Models
             return count;
         }
 
+        public List<string> GetTrainerName()
+        {
+            List<string> trainerList = new List<string>();
+
+            SqlCommand cmd;
+            SqlDataReader reader;
+            Connection();
+            cmd = new SqlCommand("SELECT Name FROM Trainer", conn);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Trainer t = new Trainer();
+                    t.Name = reader["Name"].ToString();
+                    trainerList.Add(t.Name);
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return trainerList;
+        }
+
     }
 }
