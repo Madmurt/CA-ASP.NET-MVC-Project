@@ -21,7 +21,7 @@ namespace CA_Gym.Models
         }
 
         //Method for inserting data to Database
-        public int Insert(Member user)
+        public int Insert(Member user, MemberShipType mType)
         {
             //count shows the number of affected rows
             int count = 0;
@@ -30,7 +30,7 @@ namespace CA_Gym.Models
             Connection();
             cmd = new SqlCommand("uspInsertMemberTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+            /*cmd.Parameters.AddWithValue("@firstName", user.FirstName);
             cmd.Parameters.AddWithValue("@lastName", user.LastName);
             cmd.Parameters.AddWithValue("@gender", user.Gender);
             cmd.Parameters.AddWithValue("@age", user.Age);
@@ -39,12 +39,33 @@ namespace CA_Gym.Models
             cmd.Parameters.AddWithValue("@email", user.Email);
             password = Crypto.HashPassword(user.Password);
             message = password;
+            cmd.Parameters.AddWithValue("@memPass", password);*/
+
+            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+            cmd.Parameters.AddWithValue("@lastName", user.LastName);
+            cmd.Parameters.AddWithValue("@gender", user.LastName);
+            cmd.Parameters.AddWithValue("@age", user.LastName);
+            cmd.Parameters.AddWithValue("@phone", user.LastName);
+            cmd.Parameters.AddWithValue("@memAddress", user.LastName);
+            cmd.Parameters.AddWithValue("@isAdmin", user.IsAdmin);
+            password = Crypto.HashPassword(user.Password);
             cmd.Parameters.AddWithValue("@memPass", password);
+
+            SqlCommand cmd2;
+            Connection();
+            cmd2 = new SqlCommand("uspInsertMembershipTypeTable", conn);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Parameters.AddWithValue("@memType", mType.MemType);
+            cmd2.Parameters.AddWithValue("@joinDate", mType.JoinDate);
+            cmd2.Parameters.AddWithValue("@renewalDate", mType.RenewalDate);
+            cmd2.Parameters.AddWithValue("@gymLocation", mType.GymLocation);
 
             try
             {
                 conn.Open();
                 count = cmd.ExecuteNonQuery();
+                count += cmd2.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
