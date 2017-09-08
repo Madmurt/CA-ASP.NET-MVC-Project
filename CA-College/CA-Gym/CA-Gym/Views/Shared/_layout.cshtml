@@ -59,10 +59,10 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    @Html.ActionLink("Login", "Contact", "Contact", null, new { @class = "nav-link" })
+                    @Html.ActionLink("Login", "Login", "User", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Register", "Contact", "Contact", null, new { @class = "nav-link" })
+                    @Html.ActionLink("Register", "Registration", "User", null, new { @class = "nav-link" })
                 </li>
             </ul>
             
@@ -73,7 +73,7 @@
     
 
     @RenderBody();
-    <footer id="main-footer" class="text-center p-4 fixed-bottom">
+    <footer id="main-footer" class="text-center p-4">
         <div class="container">
             <div class="row">
                 <div class="col">
