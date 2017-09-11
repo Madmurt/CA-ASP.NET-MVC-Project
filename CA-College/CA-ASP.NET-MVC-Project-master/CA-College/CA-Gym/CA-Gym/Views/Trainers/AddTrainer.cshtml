@@ -1,0 +1,34 @@
+﻿@model CA_Gym.Models.Trainer
+@{
+    ViewBag.Title = "AddTrainer";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("AddTrainer", "Trainers", FormMethod.Post))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "error" })
+        <p>
+            @Html.LabelFor(u => u.Name)
+            @Html.TextBoxFor(u => u.Name)
+        </p>
+        <p>
+            @Html.LabelFor(u => u.Age)
+            @Html.TextBoxFor(u => u.Age)
+        </p>
+        <p>
+            @Html.LabelFor(u => u.Gender)
+            @Html.TextBoxFor(u => u.Gender)
+        </p>
+        <p>
+            @Html.LabelFor(u => u.Speciality)
+            @Html.PasswordFor(u => u.Speciality)
+        </p>
+        <p>
+            <input id="Submit1" type="submit" value="Register" />
+            <input id="Reset1" type="reset" value="Clear" />
+        </p>
+    }
+
+</div>
+
