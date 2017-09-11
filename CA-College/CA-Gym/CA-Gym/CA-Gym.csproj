@@ -97,9 +97,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Gym_Database1.mdf" />
-    <Content Include="App_Data\Gym_Database1_log.ldf">
-      <DependentUpon>Gym_Database1.mdf</DependentUpon>
+    <Content Include="App_Data\Gym_Database.mdf" />
+    <Content Include="App_Data\Gym_Database_log.ldf">
+      <DependentUpon>Gym_Database.mdf</DependentUpon>
     </Content>
     <Content Include="Content\flaticon.css" />
     <Content Include="Content\fonts\flaticon.html" />
@@ -155,7 +155,9 @@
       <LastGenOutput>User1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\main.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -228,6 +230,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\VerifyAccount.cshtml" />
     <Content Include="Views\Trainers\Status.cshtml" />
+    <Content Include="Views\Classes\AddClass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

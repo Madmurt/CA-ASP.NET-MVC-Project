@@ -213,3 +213,7 @@ C:\Users\mccar\Documents\WebDev\CA-ASP.NET-MVC-Project\CA-College\CA-Gym\CA-Gym\
 C:\Users\mccar\Documents\WebDev\CA-ASP.NET-MVC-Project\CA-College\CA-Gym\CA-Gym\bin\EntityFramework.SqlServer.dll
 C:\Users\mccar\Documents\WebDev\CA-ASP.NET-MVC-Project\CA-College\CA-Gym\CA-Gym\bin\EntityFramework.xml
 C:\Users\mccar\Documents\WebDev\CA-ASP.NET-MVC-Project\CA-College\CA-Gym\CA-Gym\bin\EntityFramework.SqlServer.xml
+E:\PROGRAMMING\cSharp\CA-ASP.NET-MVC-Project\CA-College\CA-Gym\CA-Gym\bin\EntityFramework.dll
+E:\PROGRAMMING\cSharp\CA-ASP.NET-MVC-Project\CA-College\CA-Gym\CA-Gym\bin\EntityFramework.SqlServer.dll
+E:\PROGRAMMING\cSharp\CA-ASP.NET-MVC-Project\CA-College\CA-Gym\CA-Gym\bin\EntityFramework.xml
+E:\PROGRAMMING\cSharp\CA-ASP.NET-MVC-Project\CA-College\CA-Gym\CA-Gym\bin\EntityFramework.SqlServer.xml

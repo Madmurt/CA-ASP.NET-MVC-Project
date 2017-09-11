@@ -244,17 +244,17 @@ namespace CA_Gym.Models
             SqlCommand cmd;
             SqlDataReader reader;
             Connection();
-            cmd = new SqlCommand("SELECT Name FROM Trainer", conn);
-
+            cmd = new SqlCommand("uspGetTrainer", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
             try
             {
                 conn.Open();
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Trainer t = new Trainer();
-                    t.Name = reader["Name"].ToString();
-                    trainerList.Add(t.Name);
+                    string name;
+                    name = reader["Name"].ToString();
+                    trainerList.Add(name);
                 }
 
             }

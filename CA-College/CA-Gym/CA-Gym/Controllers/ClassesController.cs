@@ -19,7 +19,9 @@ namespace CA_Gym.Controllers
         [HttpGet]
         public ActionResult AddClass()
         {
+            List<string> list = dao.GetTrainerName();
             ViewBag.TrainerList = dao.GetTrainerName();
+            Response.Write(list.Count);
             return View();
         }
 
