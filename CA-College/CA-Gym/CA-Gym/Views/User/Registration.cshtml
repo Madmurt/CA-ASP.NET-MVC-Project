@@ -1,0 +1,91 @@
+﻿@model CA_Gym.Models.User
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+@if (ViewBag.status != null && Convert.ToBoolean(ViewBag.status)) //Show message in ViewBag if registration is successful
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong>@ViewBag.Message
+    </div>
+}
+else   //Otherwise, the form will be re-presented so user can fill in details again
+{
+
+
+    <div class="container">
+        <div class="row justify-content-center mt-5 mb-5">
+            <div class="col-md-9 offset-md-3">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <form class="form-group">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <h2 class="display-4 pb-3">Register</h2>
+                        <div class="form-group row">
+                           @Html.LabelFor(model => model.FirstName, new { @class = "col-form-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.LastName,new { @class = "col-form-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                           @Html.LabelFor(model => model.EmailAddress, new { @class = "col-form-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Password, new { @class = "col-form-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.ConfirmPassword, new { @class = "col-form-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <input type="submit" value="Register" class="btn btn-primary btn-block" />
+                        @Html.ActionLink("Already A Member?", "Login", "User", new { @class = "btn btn-outline btn-block" })
+
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+    
+    
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Error!</strong>@ViewBag.Message
+        </div>
+    }
+    
+}
+
+
+@*<div>
+    @Html.ActionLink("Login", "Login")
+</div>*@
+
