@@ -40,5 +40,12 @@ namespace CA_Gym.Controllers
             }
             return View(trainer);
         }
+
+        [HttpPost]
+        public ActionResult BookTrainer(Trainer trainer)
+        {
+            
+            return View(trainer);
+        }
     }
 }

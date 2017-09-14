@@ -144,16 +144,6 @@
     <Content Include="Content\Images\person9.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
-    <Content Include="Models\User.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>User.edmx</DependentUpon>
-      <LastGenOutput>User.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\User.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>User.edmx</DependentUpon>
-      <LastGenOutput>User1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\main.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -175,29 +165,10 @@
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\DAO.cs" />
-    <Compile Include="Models\Extended\User.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberShipType.cs" />
     <Compile Include="Models\PTSession.cs" />
     <Compile Include="Models\Trainer.cs" />
-    <Compile Include="Models\User.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>User.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>User.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>User.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>User.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -206,13 +177,6 @@
     <Content Include="Content\fonts\Flaticon.eot" />
     <Content Include="Content\fonts\Flaticon.ttf" />
     <Content Include="Content\fonts\Flaticon.woff" />
-    <EntityDeploy Include="Models\User.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>User.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\User.edmx.diagram">
-      <DependentUpon>User.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -228,6 +192,8 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\VerifyAccount.cshtml" />
     <Content Include="Views\Trainers\Status.cshtml" />
+    <Content Include="Views\Trainers\BookTrainer.cshtml" />
+    <Content Include="Views\Classes\BookClass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

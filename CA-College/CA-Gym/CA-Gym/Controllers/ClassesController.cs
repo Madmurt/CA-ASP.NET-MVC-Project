@@ -51,5 +51,10 @@ namespace CA_Gym.Controllers
             }
             return View(c);
         }
+
+        public ActionResult BookClass(Class c)
+        {
+            return View(c);
+        }
     }
 }

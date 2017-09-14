@@ -1,4 +1,4 @@
-﻿
+﻿@model CA_Gym.Models.Member
 @{
     Layout = null;
 }
@@ -27,53 +27,88 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Prices", "Prices", "Prices", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Facilities", "Facilities", "Facilities", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Classes", "Classes", "Classes", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Exercise", "Exercise", "Exercise", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Nutrition", "Nutrition", "Nutrition", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Meet Our Trainers", "Trainers", "Trainers", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Contact Us", "Contact", "Contact", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("AddTrainer", "AddTrainer", "Trainers", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("AddClasses", "AddClass", "Classes", null, new { @class = "nav-link" })
-                </li>
+            @if (Session["name"] == null)
+            {
+                <ul class="navbar-nav mr-auto">
+                
+                    <li class="nav-item active">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Prices", "Prices", "Prices", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Facilities", "Facilities", "Facilities", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Classes", "Classes", "Classes", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Exercise", "Exercise", "Exercise", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Nutrition", "Nutrition", "Nutrition", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Meet Our Trainers", "Trainers", "Trainers", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact Us", "Contact", "Contact", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("AddTrainer", "AddTrainer", "Trainers", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("AddClasses", "AddClass", "Classes", null, new { @class = "nav-link" })
+                    </li>
 
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    @Html.ActionLink("Login", "Login", "User", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Register", "Registration", "User", null, new { @class = "nav-link" })
-                </li>
-            </ul>
-            
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "Login", "User", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Register", "Registration", "User", null, new { @class = "nav-link" })
+                    </li>
+                </ul>
+            }
+            else if (Session["id"].Equals(1))
+            {
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("AddTrainer", "AddTrainer", "Trainers", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("AddClasses", "AddClass", "Classes", null, new { @class = "nav-link" })
+                    </li>
+                </ul>
+            }
+            else if (Session["id"].Equals(0))
+            {
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            @Html.ActionLink("Book PT Session", "BookTrainer", "Trainers", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Book Class", "BookClass", "Classes", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                }
         </div>
     </nav> 
     
 
-    
+    @if (Session["name"] == null)
+    {
+        <span>@Session["name"], you are logged in</span>
+
+        @Html.ActionLink("Logout", "LogOut", "User", null, new { @class = "register" })
+    }
+    else
+    {
+        @Html.ActionLink("Register", "Index", "User", null, new { @class = "register" })
+        @Html.ActionLink("Login /", "Login", "User", null, new { @class = "register" })
+    }
 
     @RenderBody();
     <footer id="main-footer" class="text-center p-4 footer">
