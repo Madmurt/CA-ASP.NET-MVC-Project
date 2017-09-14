@@ -19,36 +19,27 @@ namespace CA_Gym.Controllers
         [HttpGet]
         public ActionResult AddClass()
         {
-            List<string> list = dao.GetTrainerName();
             ViewBag.TrainerList = dao.GetTrainerName();
-            Response.Write(list.Count);
             return View();
         }
 
         [HttpPost]
         public ActionResult AddClass(Class c)
         {
-            ViewBag.TitleList = dao.GetTrainerName();
+            //ViewBag.TitleList = dao.GetTrainerName();
+
             int count = 0;
             if (ModelState.IsValid)
             {
-                if (count == 0)
+                count = dao.Insert(c);
+                //Response.Write(dao.message);
+                if (count == 1)
+                    ViewBag.Status = "Class is created successfully.";
+                else
                 {
-                    TempData["Class"] = c;
-                    return RedirectToAction("AddClass");
+                    ViewBag.Status = "Error! " + dao.message;
                 }
-                else{
-
-                    count = dao.Insert(c);
-                    //Response.Write(dao.message);
-                    if (count == 1)
-                        ViewBag.Status = "Class is created successfully.";
-                    else
-                    {
-                        ViewBag.Status = "Error! " + dao.message;
-                    }
-                    return View("Status");
-                }
+                return View("Status");
 
             }
             return View(c);

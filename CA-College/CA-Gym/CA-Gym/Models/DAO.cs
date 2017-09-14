@@ -252,9 +252,9 @@ namespace CA_Gym.Models
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    string name;
-                    name = reader["Name"].ToString();
-                    trainerList.Add(name);
+                    Trainer t = new Trainer();
+                    t.Name = reader["Name"].ToString();
+                    trainerList.Add(t.Name);
                 }
 
             }
@@ -270,5 +270,33 @@ namespace CA_Gym.Models
             return trainerList;
         }
 
+        public int getTrainerIDFromDropDown()
+        {
+            int result = 0;
+            SqlDataReader reader;
+            Connection();
+
+            SqlCommand cmd = new SqlCommand("SELECT TrainerID From Trainer", conn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result = int.Parse(reader["TrainerID"].ToString());
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return result;
+        }
     }
 }
