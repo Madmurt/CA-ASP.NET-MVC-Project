@@ -13,6 +13,11 @@ namespace CA_Gym.Models
         public string Date { get; set; }
         public string Time { get; set; }
 
+        public Booking()
+        {
+
+        }
+
         public Booking(int bID, int cID, int mID, string d, string t)
         {
             BookingID = bID;

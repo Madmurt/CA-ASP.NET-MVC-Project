@@ -118,7 +118,6 @@ namespace CA_Gym.Models
             cmd = new SqlCommand("uspInsertClassTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@trainerID", trainerID);
-            //SELECT trainerID FROM Trainer WHERE Name = etc.;
             cmd.Parameters.AddWithValue("@time", c.Time);
             cmd.Parameters.AddWithValue("@classType", c.ClassType);
             cmd.Parameters.AddWithValue("@location", c.Location);
@@ -171,7 +170,7 @@ namespace CA_Gym.Models
             return count;
         }
 
-        public int Insert(Booking book)
+        public int Insert(Booking book, int classID, int memberID)
         {
             //count shows the number of affected rows
             int count = 0;
@@ -179,11 +178,10 @@ namespace CA_Gym.Models
             Connection();
             cmd = new SqlCommand("uspInsertBookingTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@classID", book.ClassID);
-            //SELECT classID FROM Class WHERE location,classType,Time = etc.;
-            //cmd.Parameters.AddWithValue("@memberID", book.MemberID); Use logged in member ID.
-            cmd.Parameters.AddWithValue("@date", book.Date);
-            cmd.Parameters.AddWithValue("@time", book.Time);
+            cmd.Parameters.AddWithValue("@classID", classID);
+            cmd.Parameters.AddWithValue("@memberID", memberID); //Use logged in member ID.
+            cmd.Parameters.AddWithValue("@date", book.Date); // Need to use class selection for this
+            cmd.Parameters.AddWithValue("@time", book.Time); // Need to use class selection for this
 
             try
             {
@@ -202,7 +200,7 @@ namespace CA_Gym.Models
             return count;
         }
 
-        public int Insert(PTSession ptSess)
+        public int Insert(PTSession ptSess, int memberID, int trainerID)
         {
             //count shows the number of affected rows
             int count = 0;
@@ -210,9 +208,8 @@ namespace CA_Gym.Models
             Connection();
             cmd = new SqlCommand("uspInsertPTSessionTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@trainerID", ptSess.TrainerID);
-            //SELECT trainerID FROM Trainer WHERE Name = etc.;
-            //cmd.Parameters.AddWithValue("@memberID", ptSess.MemberID); Use logged in member ID.
+            cmd.Parameters.AddWithValue("@trainerID", trainerID);
+            cmd.Parameters.AddWithValue("@memberID", memberID); //Use logged in member ID.
             cmd.Parameters.AddWithValue("@sessionLength", ptSess.SessionLength);
             cmd.Parameters.AddWithValue("@sesionDate", ptSess.SessionDate);
             cmd.Parameters.AddWithValue("@sessionTime", ptSess.SessionTime);
@@ -268,6 +265,71 @@ namespace CA_Gym.Models
             }
 
             return trainerList;
+        }
+
+        public List<string> GetClassInfo()
+        {
+            List<string> classList = new List<string>();
+
+            SqlCommand cmd;
+            SqlDataReader reader;
+            Connection();
+            cmd = new SqlCommand("uspGetClassInfo", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string result = reader["ClassType"].ToString();
+                    classList.Add(result);
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return classList;
+        }
+
+        public List<string> GetMemberName()
+        {
+            List<string> memberList = new List<string>();
+
+            SqlCommand cmd;
+            SqlDataReader reader;
+            Connection();
+            cmd = new SqlCommand("uspGetMemberName", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string result;
+                    result = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
+                    memberList.Add(result);
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return memberList;
         }
 
         public int getTrainerIDFromDropDown(string trainerName)

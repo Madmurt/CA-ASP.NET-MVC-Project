@@ -49,5 +49,43 @@ namespace CA_Gym.Controllers
             }
             return View(c);
         }
+
+        [HttpGet]
+        public ActionResult AddBooking()
+        {
+            string response = null;
+            ViewBag.MemberList = dao.GetMemberName();
+            ViewBag.ClassList = dao.GetClassInfo();
+            //ViewBag.TrainerID = dao.getTrainerIDFromDropDown();
+            //response = dao.GetMemberName();
+            //Response.Write(response.Count());
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddBooking(Booking b)
+        {
+            /*string t = Request.Form["MemberList"].ToString();
+            int memberID = dao.getMemberIDFromDropDown(t);
+
+            string c = Request.Form["ClassList"].ToString();
+            int classID = dao.getClassIDFromDropDown(c);
+
+            int count = 0;
+            if (ModelState.IsValid)
+            {
+                count = dao.Insert(b, memberID, classID);
+                //Response.Write(dao.message);
+                if (count == 1)
+                    ViewBag.Status = "Class is created successfully.";
+                else
+                {
+                    ViewBag.Status = "Error! " + dao.message;
+                }
+                return View("Status");
+
+            }*/
+            return View(b);
+        }
     }
 }
