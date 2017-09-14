@@ -1,48 +1,28 @@
-﻿@model CA_Gym.Models.UserLogin
+﻿@model CA_Gym.Models.Member
 
 @{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_layout.cshtml";
 }
 
-<div class="container">
-    <div class="row justify-content-center mt-5 mb-5">
-        <div class="col-md-9 offset-md-3">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-                <form class="form-group">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <h2 class="display-4 pb-3">Login</h2>
-                        <div class="form-group row">
-                            @Html.LabelFor(m => m.EmailAddress, new { @class = "col-form-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            @Html.LabelFor(m => m.Password, new { @class = "col-form-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            @Html.LabelFor(m => m.RememberMe, new { @class = "col-form-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.ValidationMessageFor(m => m.RememberMe, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                            <input type="submit" value="Login" class="btn btn-primary btn-block" />
-                            @Html.ActionLink("Not A Member?", "Registration", "User", new { @class = "btn btn-outline btn-block"})
-                        
-                </form>
-            }
-        </div>
-     </div>
-    </div>
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    @Html.ValidationSummary(false, "", new { @class = "error" })
+    <p>
+        @Html.LabelFor(u => u.Email)
+        @Html.TextBoxFor(u => u.Email, new { style = "width:160px" })
+    </p>
+    <p>
+        @Html.LabelFor(u => u.Password)
+        @Html.PasswordFor(u => u.Password, new { style = "width:160px" })
+    </p>
+    <p>
+        @Html.LabelFor(u => u.MemberRole)
+        @Html.EnumDropDownListFor(u => u.MemberRole, new { style = "width:160px" })
+    </p>
+    <p>
+        <br />
+        <input id="Submit1" type="submit" value="Submit" />
+        <input id="Reset1" type="reset" value="Clear" />
+    </p>
+}

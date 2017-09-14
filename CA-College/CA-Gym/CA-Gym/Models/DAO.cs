@@ -298,5 +298,98 @@ namespace CA_Gym.Models
 
             return result;
         }
+
+        //***Update member details****
+        public bool UpdateMemberDetails(Member member)
+        {
+            Connection();
+            SqlCommand cmd = new SqlCommand("UpdateMemberDetails", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@firstName", member.FirstName);
+            cmd.Parameters.AddWithValue("@lastName", member.LastName);
+            cmd.Parameters.AddWithValue("@phone", member.Phone);
+            cmd.Parameters.AddWithValue("@address", member.Address);
+
+            conn.Open();
+            int i = cmd.ExecuteNonQuery();
+            conn.Close();
+
+            if (i >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //********Delete member**********
+        public bool DeleteMember(int memberId)
+        {
+            Connection();
+            SqlCommand cmd = new SqlCommand("DeleteMember", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@memberID", memberId);
+
+            conn.Open();
+            int i = cmd.ExecuteNonQuery();
+            conn.Close();
+
+            if (i >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Method for checking login
+        public string CheckLogin(Member member)
+        {
+            string firstName = null;
+            SqlCommand cmd;
+            SqlDataReader reader;
+            string password;
+            Connection();
+            cmd = new SqlCommand("uspCheckLogin", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@email", member.Email);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    password = reader["MemPass"].ToString();
+                    //WHAT IS THIS FELIX?
+                    /*if (Crypto.VerifyHashedPassword(password, member.Password))
+                    {
+                        firstName = reader["FirstName"].ToString();
+                    }*/
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            catch (FormatException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return firstName;
+        }
     }
 }
