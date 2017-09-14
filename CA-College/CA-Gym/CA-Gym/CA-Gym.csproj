@@ -231,6 +231,7 @@
     <Content Include="Views\User\VerifyAccount.cshtml" />
     <Content Include="Views\Trainers\Status.cshtml" />
     <Content Include="Views\Classes\AddClass.cshtml" />
+    <Content Include="Views\Classes\Status.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

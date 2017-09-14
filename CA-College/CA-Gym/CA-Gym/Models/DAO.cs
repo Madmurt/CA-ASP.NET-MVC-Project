@@ -109,7 +109,7 @@ namespace CA_Gym.Models
             return count;
         }
 
-        public int Insert(Class c)
+        public int Insert(Class c, int trainerID)
         {
             //count shows the number of affected rows
             int count = 0;
@@ -117,7 +117,7 @@ namespace CA_Gym.Models
             Connection();
             cmd = new SqlCommand("uspInsertClassTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@trainerID", trainer.ID); How to add this from drop down list? 
+            cmd.Parameters.AddWithValue("@trainerID", trainerID);
             //SELECT trainerID FROM Trainer WHERE Name = etc.;
             cmd.Parameters.AddWithValue("@time", c.Time);
             cmd.Parameters.AddWithValue("@classType", c.ClassType);
@@ -270,13 +270,13 @@ namespace CA_Gym.Models
             return trainerList;
         }
 
-        public int getTrainerIDFromDropDown()
+        public int getTrainerIDFromDropDown(string trainerName)
         {
             int result = 0;
             SqlDataReader reader;
             Connection();
-
-            SqlCommand cmd = new SqlCommand("SELECT TrainerID From Trainer", conn);
+        
+            SqlCommand cmd = new SqlCommand("SELECT TrainerID From Trainer WHERE Name = '" + trainerName + "'" , conn);
             //cmd.CommandType = CommandType.StoredProcedure;
             try
             {

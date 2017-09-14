@@ -19,19 +19,24 @@ namespace CA_Gym.Controllers
         [HttpGet]
         public ActionResult AddClass()
         {
+            string response = null;
             ViewBag.TrainerList = dao.GetTrainerName();
+            //ViewBag.TrainerID = dao.getTrainerIDFromDropDown();
+            //response = dao.getTrainerIDFromDropDown();
+            //Response.Write(response.Count());
             return View();
         }
 
         [HttpPost]
         public ActionResult AddClass(Class c)
         {
-            //ViewBag.TitleList = dao.GetTrainerName();
-
+            string t = Request.Form["TrainerList"].ToString();
+            ViewBag.TitleList = dao.GetTrainerName();
+            int trainerID = dao.getTrainerIDFromDropDown(t);
             int count = 0;
             if (ModelState.IsValid)
             {
-                count = dao.Insert(c);
+                count = dao.Insert(c, trainerID);
                 //Response.Write(dao.message);
                 if (count == 1)
                     ViewBag.Status = "Class is created successfully.";
