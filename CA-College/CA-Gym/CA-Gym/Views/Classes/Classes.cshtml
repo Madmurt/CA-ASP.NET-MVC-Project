@@ -1,7 +1,54 @@
-﻿
+﻿@model IEnumerable<CA_Gym.Models.Class>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Classes";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
+
+<header id="page-header">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto text-center">
+                <h1 class="pt-2">Check Out Our Classes Below</h1>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row mt-5 mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 align-self-center">
+
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+
+                        <th>Class ID</th>
+                        <th>Trainer ID</th>
+                        <th>Class Type</th>
+                        <th>Location</th>
+                        <th>Time</th>
+                        <th>Max Members</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var newClass in Model)
+                    {
+                        <tr>
+                            <td>@newClass.ClassID.ToString()</td>
+                            <td>@newClass.TrainerID.ToString()</td>
+                            <td>@newClass.ClassType</td>
+                            <td>@newClass.Location</td>
+                            <td>@newClass.Time</td>
+                            <td>@newClass.MaxMembers</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 

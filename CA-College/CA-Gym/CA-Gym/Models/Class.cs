@@ -14,6 +14,11 @@ namespace CA_Gym.Models
         public string Location { get; set; }
         public int MaxMembers { get; set; }
 
+        public Class()
+        {
+
+        }
+
         public Class(int cID, int tID, string t, string cType, string l, int maxM)
         {
             ClassID = cID;

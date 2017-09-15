@@ -11,10 +11,6 @@ namespace CA_Gym.Controllers
     {
         DAO dao = new DAO();
         // GET: Classes
-        public ActionResult Classes()
-        {
-            return View();
-        }
 
         [HttpGet]
         public ActionResult AddClass()
@@ -51,5 +47,12 @@ namespace CA_Gym.Controllers
             }
             return View(c);
         }
+
+        public ActionResult Classes()
+        {
+            List<Class> classList = dao.ShowAllClasses();
+            return View(classList);
+        }
+
     }
 }

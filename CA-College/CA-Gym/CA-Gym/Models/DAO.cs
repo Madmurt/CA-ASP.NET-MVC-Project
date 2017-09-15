@@ -269,6 +269,45 @@ namespace CA_Gym.Models
 
             return trainerList;
         }
+        
+        public List<Class> ShowAllClasses()
+        {
+            List<Class> classList = new List<Class>();
+            SqlCommand cmd;
+            SqlDataReader reader;
+            //Calling connection method to establish connection string
+            Connection();
+            cmd = new SqlCommand("SELECT * FROM Class", conn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Class newClass = new Class();
+
+                    newClass.ClassID = int.Parse(reader["ClassID"].ToString());
+                    newClass.TrainerID = int.Parse(reader["TrainerID"].ToString());
+                    newClass.Time = reader["Time"].ToString();
+                    newClass.ClassType = reader["ClassType"].ToString();
+                    newClass.Location = reader["Location"].ToString();
+                    newClass.MaxMembers = int.Parse(reader["MaxMembers"].ToString());
+                    classList.Add(newClass);
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return classList;
+        }
 
     }
 }
