@@ -14,16 +14,13 @@ namespace CA_Gym.Models
         SqlConnection conn;
         public string message = "";
 
-        //Intialises a connection object
         public void Connection()
         {
             conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["conStringLocal"].ConnectionString);
         }
 
-        //Method for inserting data to Database
         public int Insert(Member user, MemberShipType mType)
         {
-            //count shows the number of affected rows
             int count = 0;
             SqlCommand cmd;
             string password;
@@ -170,7 +167,7 @@ namespace CA_Gym.Models
             return count;
         }
 
-        public int Insert(Booking book, int classID, int memberID)
+        public int Insert(Booking book, int classID, int memberID, string classTime)
         {
             //count shows the number of affected rows
             int count = 0;
@@ -180,8 +177,8 @@ namespace CA_Gym.Models
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@classID", classID);
             cmd.Parameters.AddWithValue("@memberID", memberID); //Use logged in member ID.
-            cmd.Parameters.AddWithValue("@date", book.Date); // Need to use class selection for this
-            cmd.Parameters.AddWithValue("@time", book.Time); // Need to use class selection for this
+            cmd.Parameters.AddWithValue("@date", book.Date);
+            cmd.Parameters.AddWithValue("@time", classTime); 
 
             try
             {
@@ -267,14 +264,14 @@ namespace CA_Gym.Models
             return trainerList;
         }
 
-        public List<string> GetClassInfo()
+        public List<string> GetClassType()
         {
             List<string> classList = new List<string>();
 
             SqlCommand cmd;
             SqlDataReader reader;
             Connection();
-            cmd = new SqlCommand("uspGetClassInfo", conn);
+            cmd = new SqlCommand("uspGetClassType", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             try
             {
@@ -347,6 +344,64 @@ namespace CA_Gym.Models
                 while (reader.Read())
                 {
                     result = int.Parse(reader["TrainerID"].ToString());
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return result;
+        }
+
+        public int getClassIDFromDropDown(string classType)
+        {
+            int result = 0;
+            SqlDataReader reader;
+            Connection();
+
+            SqlCommand cmd = new SqlCommand("SELECT ClassID From Class WHERE ClassType = '" + classType + "'", conn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result = int.Parse(reader["ClassID"].ToString());
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return result;
+        }
+        
+        public string getClassTimeFromDropDown(string classType)
+        {
+            string result = null;
+            SqlDataReader reader;
+            Connection();
+
+            SqlCommand cmd = new SqlCommand("SELECT Time From Class WHERE ClassType = '" + classType + "'", conn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result = reader["Time"].ToString();
                 }
             }
             catch (SqlException ex)

@@ -53,12 +53,9 @@ namespace CA_Gym.Controllers
         [HttpGet]
         public ActionResult AddBooking()
         {
-            string response = null;
             ViewBag.MemberList = dao.GetMemberName();
-            ViewBag.ClassList = dao.GetClassInfo();
-            //ViewBag.TrainerID = dao.getTrainerIDFromDropDown();
-            //response = dao.GetMemberName();
-            //Response.Write(response.Count());
+            ViewBag.ClassList = dao.GetClassType();
+
             return View();
         }
 
@@ -70,11 +67,12 @@ namespace CA_Gym.Controllers
 
             string c = Request.Form["ClassList"].ToString();
             int classID = dao.getClassIDFromDropDown(c);
+            string classTime = dao.getClassTimeFromDropDown(c);
 
             int count = 0;
             if (ModelState.IsValid)
             {
-                count = dao.Insert(b, memberID, classID);
+                count = dao.Insert(b, memberID, classID, classTime);
                 //Response.Write(dao.message);
                 if (count == 1)
                     ViewBag.Status = "Class is created successfully.";
