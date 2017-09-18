@@ -8,7 +8,7 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 
-@using (Html.BeginForm("Register", "User", FormMethod.Post)) //
+@using (Html.BeginForm())//@using (Html.BeginForm("Register", "User", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

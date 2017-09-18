@@ -15,25 +15,30 @@ namespace CA_Gym.Controllers
         DAO dao = new DAO();
         string connString = WebConfigurationManager.ConnectionStrings["conStringLocal"].ConnectionString;
         
+       
         // GET: User
         public ActionResult Index()
         {
-            return View("Register");
+            return View();
         }
         // Registration Action
         [HttpGet]
-        public ActionResult Registration()
+        public ActionResult Register()
         {
-            return View();
+           // return View(); 
+            return RedirectToAction("MemberType", "MemberType");
         }
 
         //Registration Post Action
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Member member, MemberShipType mType) //added parameter MemberShipType mType
+        public ActionResult Register(Member member, MemberShipType mType) 
         {
-            ModelState.Remove("TypeID");
-
+            //string t = Request.Form["MemTypeList"]!=null?Request.Form["MemTypeList"].ToString():null;
+            //ViewBag.TitleList = dao.GetMemberType();
+            //  int memTypeID = dao.getMemTypeIDFromDropDown(t);
+            
+            dao.GetMemTypeID();
             int count = 0;
             if (ModelState.IsValid)
             {

@@ -60,7 +60,8 @@ namespace CA_Gym.Models
 
             try
             {
-                conn.Open();
+                if (conn.State == ConnectionState.Closed)  //Added to hopefully resolve connection issues.
+                    conn.Open();
                 count = cmd.ExecuteNonQuery();
                 count += cmd2.ExecuteNonQuery();
             }
@@ -484,12 +485,11 @@ namespace CA_Gym.Models
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    password = reader["MemPass"].ToString();
-                    //WHAT IS THIS FELIX?
-                    /*if (Crypto.VerifyHashedPassword(password, member.Password))
+                    password = reader["MemPass"].ToString();                   
+                    if (Crypto.VerifyHashedPassword(password, member.Password))
                     {
                         firstName = reader["FirstName"].ToString();
-                    }*/
+                    }
 
                 }
             }
@@ -508,5 +508,90 @@ namespace CA_Gym.Models
 
             return firstName;
         }
+
+        //*********************************************
+        public List<string> GetMemberType()
+        {
+            List<string> memTypeList = new List<string>();
+
+            SqlCommand cmd;
+            SqlDataReader reader;
+            Connection();
+            cmd = new SqlCommand("uspGetMemberType", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string result = reader["MemType"].ToString();
+                    memTypeList.Add(result);
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return memTypeList;
+        }
+        //**********************************
+        public void GetMemTypeID()
+        {
+            SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["conStringLocal"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("SELECT MAX (MemTypeID) FROM MembershipType ", conn);
+            cmd.CommandType = CommandType.Text;
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            int result = 1; ;
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+
+                    result += int.Parse(dr[0].ToString());
+
+                }
+            }
+            conn.Close();
+            // return result;
+
+        }
+        //public int getMemTypeIDFromDropDown(string memType) 
+        //{
+        //    int result = 0;
+        //    SqlDataReader reader;
+        //    Connection();
+
+        //    SqlCommand cmd = new SqlCommand("SELECT MemTypeID From MembershipType WHERE MemType = '" + memType + "'", conn);
+        //    //cmd.CommandType = CommandType.StoredProcedure;
+        //    try
+        //    {
+        //        conn.Open();
+        //        reader = cmd.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            result = int.Parse(reader["MemTypeID"].ToString());
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        message = ex.Message;
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
+
+        //    return result;
+        //}
+
     }
 }

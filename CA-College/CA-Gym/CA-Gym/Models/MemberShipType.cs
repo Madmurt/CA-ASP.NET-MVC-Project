@@ -13,6 +13,11 @@ namespace CA_Gym.Models
         public string RenewalDate { get; set; }
         public string GymLocation { get; set; }
 
+        public MemberShipType()
+        {
+
+
+        }
         public MemberShipType(int memTypeID, string memType, string joinDate, string renewalDate, string gymLocation)
         {
             MemTypeID = memTypeID;

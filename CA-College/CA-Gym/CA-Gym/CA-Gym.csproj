@@ -160,7 +160,6 @@
     <Compile Include="Controllers\PricesController.cs" />
     <Compile Include="Controllers\TrainersController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
