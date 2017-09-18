@@ -19,9 +19,10 @@ namespace CA_Gym.Models
             conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["conStringLocal"].ConnectionString);
         }
 
-        public int Insert(Member user, MemberShipType mType)
+        public int Insert(Member user, int result)
         {
             int count = 0;
+
             SqlCommand cmd;
             string password;
             Connection();
@@ -46,8 +47,31 @@ namespace CA_Gym.Models
             cmd.Parameters.AddWithValue("@phone", user.LastName);
             cmd.Parameters.AddWithValue("@memAddress", user.LastName);
             cmd.Parameters.AddWithValue("@isAdmin", user.IsAdmin);
-            password = Crypto.HashPassword(user.Password);
+            password = Crypto.HashPassword(user.MemPass);
             cmd.Parameters.AddWithValue("@memPass", password);
+            cmd.Parameters.AddWithValue("@memTypeID", result);
+
+            try
+            {
+                conn.Open();
+                count += cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return count;
+        }
+
+        public int Insert(MemberShipType mType)
+        {
+            int count = 0;
+
 
             SqlCommand cmd2;
             Connection();
@@ -58,12 +82,11 @@ namespace CA_Gym.Models
             cmd2.Parameters.AddWithValue("@renewalDate", mType.RenewalDate);
             cmd2.Parameters.AddWithValue("@gymLocation", mType.GymLocation);
 
+
             try
             {
-                if (conn.State == ConnectionState.Closed)  //Added to hopefully resolve connection issues.
-                    conn.Open();
-                count = cmd.ExecuteNonQuery();
-                count += cmd2.ExecuteNonQuery();
+                conn.Open();
+                count = cmd2.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
@@ -138,35 +161,6 @@ namespace CA_Gym.Models
             return count;
         }
 
-        public int Insert(MemberShipType mType)
-        {
-            //count shows the number of affected rows
-            int count = 0;
-            SqlCommand cmd;
-            Connection();
-            cmd = new SqlCommand("uspInsertMembershipTypeTable", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@memType", mType.MemType);
-            cmd.Parameters.AddWithValue("@joinDate", mType.JoinDate);
-            cmd.Parameters.AddWithValue("@renewalDate", mType.RenewalDate);
-            cmd.Parameters.AddWithValue("@gymLocation", mType.GymLocation);
-
-            try
-            {
-                conn.Open();
-                count = cmd.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                message = ex.Message;
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-            return count;
-        }
 
         public int Insert(Booking book, int classID, int memberID, string classTime)
         {
@@ -427,7 +421,7 @@ namespace CA_Gym.Models
             cmd.Parameters.AddWithValue("@firstName", member.FirstName);
             cmd.Parameters.AddWithValue("@lastName", member.LastName);
             cmd.Parameters.AddWithValue("@phone", member.Phone);
-            cmd.Parameters.AddWithValue("@address", member.Address);
+            cmd.Parameters.AddWithValue("@address", member.MemAddress);
 
             conn.Open();
             int i = cmd.ExecuteNonQuery();
@@ -478,18 +472,18 @@ namespace CA_Gym.Models
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@email", member.Email);
-
+            cmd.Parameters.AddWithValue("@password", member.MemPass);
             try
             {
                 conn.Open();
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    password = reader["MemPass"].ToString();                   
-                    if (Crypto.VerifyHashedPassword(password, member.Password))
-                    {
-                        firstName = reader["FirstName"].ToString();
-                    }
+                    password = reader["MemPass"].ToString();
+                    //if (Crypto.VerifyHashedPassword(password, member.Password))
+                    //{
+                    //    firstName = reader["FirstName"].ToString();
+                    //}
 
                 }
             }
@@ -542,7 +536,7 @@ namespace CA_Gym.Models
             return memTypeList;
         }
         //**********************************
-        public void GetMemTypeID()
+        public int GetMemTypeID()
         {
             SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["conStringLocal"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SELECT MAX (MemTypeID) FROM MembershipType ", conn);
@@ -561,7 +555,7 @@ namespace CA_Gym.Models
                 }
             }
             conn.Close();
-            // return result;
+            return result;
 
         }
         //public int getMemTypeIDFromDropDown(string memType) 
@@ -592,6 +586,49 @@ namespace CA_Gym.Models
 
         //    return result;
         //}
+
+        public Member getMemberObject(string email, string memPass)
+        {
+            Member result = null;
+            SqlDataReader reader;
+            Connection();
+
+            SqlCommand cmd = new SqlCommand("SELECT * From Member WHERE Email = '" + email + "' AND MemPass = '" + memPass + "'" , conn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader != null)
+                {
+                    while (reader.Read())
+                    {
+                        result = new Member(int.Parse(reader["memberID"].ToString()), int.Parse(reader["memTypeID"].ToString()),
+                            reader["email"].ToString(), reader["memPass"].ToString(), reader["firstName"].ToString(),
+                            reader["lastName"].ToString(), reader["gender"].ToString(),
+                            int.Parse(reader["age"].ToString()), reader["phone"].ToString(), reader["memAddress"].ToString(), (bool)reader["isAdmin"]);
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+                
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return result;
+        }
+
+
 
     }
 }

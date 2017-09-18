@@ -21,28 +21,49 @@ namespace CA_Gym.Controllers
         {
             return View();
         }
+        
         // Registration Action
         [HttpGet]
         public ActionResult Register()
         {
-           // return View(); 
-            return RedirectToAction("MemberType", "MemberType");
+            //return View(); 
+           return RedirectToAction("MemberType", "MemberType");
+        }
+        [HttpPost]
+        public ActionResult RegisterMemType(MemberShipType memType)
+        {
+            
+            int count = 0;
+            if (ModelState.IsValid)
+            {
+                count += dao.Insert(memType);
+                //Response.Write(dao.message);
+                if (count == 1)
+                    ViewBag.Status = "User is created successfully.";
+                else
+                {
+                    ViewBag.Status = "Error! " + dao.message;
+                }
+                return View("Status");
+            }
+            //return View(); 
+            return RedirectToAction("Register", "User");
         }
 
         //Registration Post Action
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Member member, MemberShipType mType) 
+        public ActionResult Register(Member member) 
         {
             //string t = Request.Form["MemTypeList"]!=null?Request.Form["MemTypeList"].ToString():null;
             //ViewBag.TitleList = dao.GetMemberType();
             //  int memTypeID = dao.getMemTypeIDFromDropDown(t);
             
-            dao.GetMemTypeID();
+            int result = dao.GetMemTypeID();
             int count = 0;
             if (ModelState.IsValid)
             {
-                count = dao.Insert(member, mType);
+                count += dao.Insert(member, result);
                 //Response.Write(dao.message);
                 if (count == 1)
                     ViewBag.Status = "User is created successfully.";
@@ -63,7 +84,7 @@ namespace CA_Gym.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Login(Member member)  //checking this out
         {
             ModelState.Remove("FirstName");
@@ -75,28 +96,23 @@ namespace CA_Gym.Controllers
 
             if (ModelState.IsValid)
             {
-                if (member.MemberRole == Role.Admin &&
-                    member.Email == "admin@jimsgym.ie" &&
-                    member.Password == "admin")
+                Member temp = dao.getMemberObject(member.Email, member.MemPass);
+                if (temp != null)
                 {
-                    Session["0"] = "Admin";
-                    return RedirectToAction("Index", "Admin");
-                }
-                else if (member.MemberRole == Role.Member)
-                {
-                    member.FirstName = dao.CheckLogin(member);
-                    if (member.FirstName != null)
+                    if (temp.IsAdmin == true)
                     {
-                        Session["1"] = member.FirstName; //replaced "name" with "1".
-                        Session["email"] = member.Email;
+                        Session["id"] = "Admin";
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        ViewBag.Status = "Error! " + dao.message;
-                        return View("Status");
+                        Session["id"] = "Member"; //replaced "name" with "1".
+                        Session["Name"] = temp.FirstName;
+                        Session["email"] = temp.Email;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
+                
                 else
                 {
                     ViewBag.Status = "Error! " + dao.message;
@@ -110,13 +126,14 @@ namespace CA_Gym.Controllers
         }
 
         //Logout
-        [Authorize]
-        [HttpPost]
+      //  [Authorize]
+       // [HttpPost]
         public ActionResult Logout()
         {
             Session.Clear();
             Session.Abandon();
-            return View(".../Home/Index");
+            return View("../Home/Index");
+             //return RedirectToAction("Index", "Home");
         }
 
         //WHAT IS THE ?

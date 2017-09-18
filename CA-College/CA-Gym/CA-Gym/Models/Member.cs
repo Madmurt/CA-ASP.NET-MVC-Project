@@ -9,7 +9,7 @@ namespace CA_Gym.Models
     public class Member
     {
         public int MemberID { get; set; }
-        public int TypeID { get; }  //Changed property to get only
+        public int MemTypeID { get; }  //Changed property to get only
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is Required")]
@@ -19,7 +19,7 @@ namespace CA_Gym.Models
         [Required(ErrorMessage = "Password is Required")]
         [DataType(DataType.Password)]
         [StringLength(10, ErrorMessage = "Password must be 5 to 10 characters long", MinimumLength = 5)]
-        public string Password { get; set; }
+        public string MemPass { get; set; }
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "First Name is Required")]
@@ -38,29 +38,34 @@ namespace CA_Gym.Models
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         public string Phone { get; set; }
 
-        public string Address { get; set; }
-        public int IsAdmin { get; set; }
+        public string MemAddress { get; set; }
+        public bool IsAdmin { get; set; }
         //WHAT IS THIS FELIX?
         public Role MemberRole { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Confirm Password")]
-        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        [Compare("MemPass", ErrorMessage = "Passwords do not match")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        public Member(int memberID, int typeID, string email, string password, string firstName, string lastName, string gender, int age, string phone, string address, int isAdmin)
+        public Member()
+        {
+
+        }
+
+        public Member(int memberID, int memTypeID, string email, string memPass, string firstName, string lastName, string gender, int age, string phone, string memAddress, bool isAdmin)
         {
             MemberID = memberID;
-            TypeID = typeID;
+            MemTypeID = memTypeID;
             Email = email;
-            Password = password;
+            MemPass = memPass;
             FirstName = firstName;
             LastName = lastName;
             Gender = gender;
             Age = age;
             Phone = phone;
-            Address = address;
+            MemAddress = memAddress;
             IsAdmin = isAdmin;
         }
     }
