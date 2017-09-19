@@ -13,7 +13,8 @@ namespace CA_Gym.Controllers
         // GET: Classes
         public ActionResult Classes()
         {
-            return View();
+            List<Class> classList = dao.ShowAllClasses();
+            return View(classList);
         }
 
         [HttpGet]

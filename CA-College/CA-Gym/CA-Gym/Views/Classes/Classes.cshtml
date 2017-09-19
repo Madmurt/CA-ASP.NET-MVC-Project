@@ -1,15 +1,61 @@
-﻿@model CA_Gym.Models.Class
+﻿@model IEnumerable<CA_Gym.Models.Class>
 @{
     ViewBag.Title = "Classes";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6 offset-md-3">
-            <p>I am a class :)</p>
+
+<header id="page-header">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto text-center">
+                <h1 class="pt-2">Check Out Our Classes Below</h1>
+
+            </div>
         </div>
     </div>
+</header>
 
+<div class="container">
+    <div class="row mt-5 mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 align-self-center">
+
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+
+                        <th class="text-center">Class ID</th>
+                        <th class="text-center">Trainer ID</th>
+                        <th class="text-center">Class Type</th>
+                        <th class="text-center">Location</th>
+                        <th class="text-center">Time</th>
+                        <th class="text-center">Max Members</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var newClass in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@newClass.ClassID.ToString()</td>
+                            <td class="text-center">@newClass.TrainerID.ToString()</td>
+                            <td class="text-center">@newClass.ClassType</td>
+                            <td class="text-center">@newClass.Location</td>
+                            <td class="text-center">@newClass.Time</td>
+                            <td class="text-center">@newClass.MaxMembers</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 align-self-center text-center">
+            @Html.ActionLink("Book A Class", "Login", "User", null, new { @class = "btn btn-primary btn-lg" })
+        </div>
+    </div>
 </div>
 

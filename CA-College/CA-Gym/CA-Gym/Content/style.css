@@ -98,6 +98,11 @@
     padding-top: 50px;
 }
 
+#loginPage {
+    background: url("Images/image6.jpeg");
+    height: 200px;
+}
+
 
 #about img {
     margin-top: -50px;

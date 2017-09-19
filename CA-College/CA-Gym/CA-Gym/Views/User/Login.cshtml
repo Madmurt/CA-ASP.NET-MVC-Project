@@ -5,28 +5,34 @@
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 a"></div>
+<header id="page-header">
+    <div class="container">
+        <div class="row justify-content-center">
+        </div>
     </div>
-    @using (Html.BeginForm("Login", "User", FormMethod.Post))
-    {
-        @Html.ValidationSummary(false, "", new { @class = "error" })
-        <p>
-            @Html.LabelFor(u => u.Email)
-            @Html.TextBoxFor(u => u.Email, new { style = "width:160px" })
-        </p>
-        <p>
-            @Html.LabelFor(u => u.MemPass)
-            @Html.PasswordFor(u => u.MemPass, new { style = "width:160px" })
-        </p>
-        @*<p>
-            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
-        </p>*@
-        <p>
-            <br />
-            <input id="Submit1" type="submit" value="Submit" />
-            <input id="Reset1" type="reset" value="Clear" />
-        </p>
-    }
+</header>
+<div class="container">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "form-group" }))
+            {
+                <h2 class="display-4 mb-5">Login</h2>
+                @Html.ValidationSummary(false, "", new { @class = "error" })
+                <div class="form-group">
+                    @Html.LabelFor(u => u.Email, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(u => u.Email, new { placeholder = "johndoe@gmail.com", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(u => u.MemPass, new { @class = "form-control-label" })
+                    @Html.PasswordFor(u => u.MemPass, new { @class = "form-control" })
+                </div>
+
+
+                <input id="Submit1" type="submit" value="Submit" class="btn btn-primary btn-block mt-4" />
+                <input id="Reset1" type="reset" value="Clear"  class="btn btn-danger btn-block mt-2"/>
+                
+            }
+        </div>
+    </div>
+    
 </div>

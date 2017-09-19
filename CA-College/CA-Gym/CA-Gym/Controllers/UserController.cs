@@ -78,7 +78,7 @@ namespace CA_Gym.Controllers
                 count += dao.Insert(member, result);
                 //Response.Write(dao.message);
                 if (count == 1)
-                    ViewBag.Status = "User is created successfully.";
+                    return RedirectToAction("Login", "User");
                 else
                 {
                     ViewBag.Status = "Error! " + dao.message;
