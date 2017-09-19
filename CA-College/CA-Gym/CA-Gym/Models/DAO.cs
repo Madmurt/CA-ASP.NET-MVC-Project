@@ -42,10 +42,10 @@ namespace CA_Gym.Models
             cmd.Parameters.AddWithValue("@email", user.Email);
             cmd.Parameters.AddWithValue("@firstName", user.FirstName);
             cmd.Parameters.AddWithValue("@lastName", user.LastName);
-            cmd.Parameters.AddWithValue("@gender", user.LastName);
-            cmd.Parameters.AddWithValue("@age", user.LastName);
-            cmd.Parameters.AddWithValue("@phone", user.LastName);
-            cmd.Parameters.AddWithValue("@memAddress", user.LastName);
+            cmd.Parameters.AddWithValue("@gender", user.Gender);
+            cmd.Parameters.AddWithValue("@age", user.Age);
+            cmd.Parameters.AddWithValue("@phone", user.Phone);
+            cmd.Parameters.AddWithValue("@address", user.MemAddress);
             cmd.Parameters.AddWithValue("@isAdmin", user.IsAdmin);
             password = Crypto.HashPassword(user.MemPass);
             cmd.Parameters.AddWithValue("@memPass", password);
@@ -539,12 +539,12 @@ namespace CA_Gym.Models
         public int GetMemTypeID()
         {
             SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["conStringLocal"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("SELECT MAX (MemTypeID) FROM MembershipType ", conn);
+            SqlCommand cmd = new SqlCommand("SELECT TOP(1) MemTypeID FROM MembershipType ORDER BY MemTypeID DESC", conn);
             cmd.CommandType = CommandType.Text;
             conn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 
-            int result = 1; ;
+            int result = 0;
             if (dr.HasRows)
             {
                 while (dr.Read())
@@ -604,7 +604,7 @@ namespace CA_Gym.Models
                 {
                     while (reader.Read())
                     {
-                        result = new Member(int.Parse(reader["memberID"].ToString()), int.Parse(reader["memTypeID"].ToString()),
+                        result = new Member(int.Parse(reader["memTypeID"].ToString()),
                             reader["email"].ToString(), reader["memPass"].ToString(), reader["firstName"].ToString(),
                             reader["lastName"].ToString(), reader["gender"].ToString(),
                             int.Parse(reader["age"].ToString()), reader["phone"].ToString(), reader["memAddress"].ToString(), (bool)reader["isAdmin"]);

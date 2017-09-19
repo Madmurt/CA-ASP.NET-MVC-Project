@@ -156,7 +156,6 @@
     <Compile Include="Controllers\ExerciseController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MemberTypeController.cs" />
     <Compile Include="Controllers\NutritionController.cs" />
     <Compile Include="Controllers\PricesController.cs" />
     <Compile Include="Controllers\TrainersController.cs" />
@@ -200,7 +199,6 @@
     <Content Include="Views\Classes\AddBooking.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\MemberType\MemberType.cshtml" />
     <Content Include="Views\User\MemberType.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

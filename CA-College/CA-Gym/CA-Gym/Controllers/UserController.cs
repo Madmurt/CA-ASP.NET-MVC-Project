@@ -26,16 +26,27 @@ namespace CA_Gym.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            //return View(); 
-           return RedirectToAction("MemberType", "MemberType");
+           return View(); 
         }
-        [HttpPost]
-        public ActionResult RegisterMemType(MemberShipType memType)
+
+        [HttpGet]
+        public ActionResult MemberType()
         {
-            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult MemberType(FormCollection form)
+        {
+            MemberShipType memType = new MemberShipType();
             int count = 0;
             if (ModelState.IsValid)
             {
+                memType.MemType = form["MemType"];
+                memType.JoinDate = form["JoinDate"];
+                memType.RenewalDate = form["RenewalDate"];
+                memType.GymLocation = form["GymLocation"];
+
                 count += dao.Insert(memType);
                 //Response.Write(dao.message);
                 if (count == 1)
@@ -44,10 +55,11 @@ namespace CA_Gym.Controllers
                 {
                     ViewBag.Status = "Error! " + dao.message;
                 }
-                return View("Status");
+                //return View("Status");
+                return RedirectToAction("Register", "User");
             }
-            //return View(); 
-            return RedirectToAction("Register", "User");
+            return View("Register", memType); 
+
         }
 
         //Registration Post Action

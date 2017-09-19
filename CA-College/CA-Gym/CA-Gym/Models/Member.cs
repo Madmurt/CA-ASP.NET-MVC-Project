@@ -8,8 +8,7 @@ namespace CA_Gym.Models
 {
     public class Member
     {
-        public int MemberID { get; set; }
-        public int MemTypeID { get; }  //Changed property to get only
+        public int MemTypeID { get; set; }  //Changed property to get only
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is Required")]
@@ -54,9 +53,8 @@ namespace CA_Gym.Models
 
         }
 
-        public Member(int memberID, int memTypeID, string email, string memPass, string firstName, string lastName, string gender, int age, string phone, string memAddress, bool isAdmin)
+        public Member(int memTypeID, string email, string memPass, string firstName, string lastName, string gender, int age, string phone, string memAddress, bool isAdmin)
         {
-            MemberID = memberID;
             MemTypeID = memTypeID;
             Email = email;
             MemPass = memPass;
