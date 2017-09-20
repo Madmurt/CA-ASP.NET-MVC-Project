@@ -17,6 +17,11 @@ namespace CA_Gym.Models
         public decimal Cost { get; set; }
         public string SessLocation { get; set; }
 
+        public PTSession()
+        {
+
+        }
+
         public PTSession(int ptSessionID, int trainerID, int memberID, string sessionLength, string sessionDate, string sessionTime, string sessType, decimal cost, string sessLocation)
         {
             PtSessionID = ptSessionID;

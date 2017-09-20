@@ -15,11 +15,10 @@
                 @Html.ValidationSummary(false, "", new { @class = "error" })
             <div class="form-group">
                 @Html.LabelFor(model => model.MemType, "Membership Type", htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.MemType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MemType, "", new { @class = "text-danger" })
-                
+                @Html.DropDownList("TypeList", new SelectList((List<string>)ViewBag.TypeList))
             </div>
-            <div class="form-group">
+
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.JoinDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 @Html.EditorFor(model => model.JoinDate, "Join Date", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.JoinDate, "", new { @class = "text-danger" })
@@ -29,12 +28,11 @@
                 @Html.LabelFor(model => model.RenewalDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 @Html.EditorFor(model => model.RenewalDate, "Renewal Date" , new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RenewalDate, "", new { @class = "text-danger" })
-            </div>
+            </div>*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.GymLocation, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.GymLocation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GymLocation, "", new { @class = "text-danger" })
+                @Html.DropDownList("GymList", new SelectList((List<string>)ViewBag.GymList))
             </div>
 
 

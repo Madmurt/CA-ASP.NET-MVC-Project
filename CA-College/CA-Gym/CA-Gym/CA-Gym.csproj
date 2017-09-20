@@ -200,6 +200,9 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\MemberType.cshtml" />
+    <Content Include="Views\Classes\StatusBook.cshtml" />
+    <Content Include="Views\Classes\AddPTSession.cshtml" />
+    <Content Include="Views\Classes\StatusPT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

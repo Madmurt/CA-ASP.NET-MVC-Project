@@ -54,7 +54,6 @@ namespace CA_Gym.Controllers
         [HttpGet]
         public ActionResult AddBooking()
         {
-            ViewBag.MemberList = dao.GetMemberName();
             ViewBag.ClassList = dao.GetClassType();
 
             return View();
@@ -63,8 +62,7 @@ namespace CA_Gym.Controllers
         [HttpPost]
         public ActionResult AddBooking(Booking b)
         {
-            /*string t = Request.Form["MemberList"].ToString();
-            int memberID = dao.getMemberIDFromDropDown(t);
+            int memberID = dao.getMemberIDFromSession(Session["email"].ToString());
 
             string c = Request.Form["ClassList"].ToString();
             int classID = dao.getClassIDFromDropDown(c);
@@ -76,15 +74,57 @@ namespace CA_Gym.Controllers
                 count = dao.Insert(b, memberID, classID, classTime);
                 //Response.Write(dao.message);
                 if (count == 1)
-                    ViewBag.Status = "Class is created successfully.";
+                    ViewBag.Status = "Booking has been made successfully.";
                 else
                 {
                     ViewBag.Status = "Error! " + dao.message;
                 }
-                return View("Status");
+                return View("StatusBook");
 
-            }*/
+            }
             return View(b);
+        }
+
+        [HttpGet]
+        public ActionResult AddPTSession()
+        {
+            ViewBag.TrainerList = dao.GetTrainerName();
+            ViewBag.LocationList = dao.GetGymLocation();
+            ViewBag.TypeList = new List<string> {"Strength","Cardio","Yoga","Pilates","Mobility", "Specialised"};
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPTSession(PTSession pt)
+        {
+            string t = Request.Form["TrainerList"].ToString();
+            string g = Request.Form["LocationList"].ToString();
+            string type = Request.Form["TypeList"].ToString();
+            int c = int.Parse(pt.SessionLength) * 20;
+
+            int count = 0;
+
+            pt.TrainerID = dao.getTrainerIDFromDropDown(t);
+            pt.MemberID = dao.getMemberIDFromSession(Session["email"].ToString());
+            pt.SessLocation = g;
+            pt.SessType = type;
+            pt.Cost = c;
+
+            if (ModelState.IsValid)
+            {
+                count = dao.Insert(pt);
+                //Response.Write(dao.message);
+                if (count == 1)
+                    ViewBag.Status = "PT Session has been successfully booked.";
+                else
+                {
+                    ViewBag.Status = "Error! " + dao.message;
+                }
+                return View("StatusPT");
+
+            }
+            return View(pt);
         }
     }
 }

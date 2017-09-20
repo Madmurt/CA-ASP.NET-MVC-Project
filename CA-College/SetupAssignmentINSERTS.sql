@@ -41,7 +41,7 @@ VALUES (1, 'cdawg@yahoo.ie', '12345', 'Carl', 'Taylor', 'M', 28, '0876365835', '
 (8, 'fdawg@yahoo.ie', '12345','Felix', 'Dehouskat', 'M', 25, '0876362456', '28 Fake St, Dublin, Ireland', 1),
 (2, 'jdawg@yahoo.ie', '12345','Jenny', 'Block', 'F', 18, '0876365546', '15 Fake St, Dublin, Ireland', 0),
 (3, 'sdawg@yahoo.ie', '12345','Susan', 'Sun', 'F', 52, '0876365564', '38 Fake St, Dublin, Ireland', 0),
-(4, 'mdawg@yahoo.ie', '12345','Mary', 'Jane', 'F', 64, '0876654835', '45 Fake St, Dublin, Ireland', 0),
+(4, 'mjdawg@yahoo.ie', '12345','Mary', 'Jane', 'F', 64, '0876654835', '45 Fake St, Dublin, Ireland', 0),
 (5, 'bdawg@yahoo.ie', '12345','Bill', 'Tedson', 'M', 38, '086548835', '52 Fake St, Dublin, Ireland', 0),
 (6, 'tedawg@yahoo.ie', '12345','Ted', 'Danson', 'M', 71, '086524235', '122 Fake St, Dublin, Ireland', 0),
 (9, 'teddydawg@yahoo.ie', '12345','Ted', 'Hansome', 'M', 41, '086524235', '126 Fake St, Dublin, Ireland', 0),

@@ -1,5 +1,6 @@
 ﻿using CA_Gym.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -26,26 +27,43 @@ namespace CA_Gym.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-           return View(); 
+            ViewBag.GenderList = new List<string> { "Male", "Female" };
+            return View(); 
         }
 
         [HttpGet]
         public ActionResult MemberType()
         {
+            ViewBag.GymList = dao.GetGymLocation();
+            ViewBag.TypeList = new List<string> { "Annual", "Day Pass", "Monthly"};
             return View();
         }
 
         [HttpPost]
         public ActionResult MemberType(FormCollection form)
         {
+            string g = Request.Form["GymList"].ToString();
+            string type = Request.Form["TypeList"].ToString();
             MemberShipType memType = new MemberShipType();
             int count = 0;
             if (ModelState.IsValid)
             {
-                memType.MemType = form["MemType"];
-                memType.JoinDate = form["JoinDate"];
-                memType.RenewalDate = form["RenewalDate"];
-                memType.GymLocation = form["GymLocation"];
+                memType.MemType = type;
+                memType.JoinDate = DateTime.Now.ToString();
+                string rnDate = null;
+                if (type == "Annual")
+                {
+                    rnDate = DateTime.Now.AddYears(1).ToString();
+                }
+                else if (type == "Monthly")
+                {
+                    rnDate = DateTime.Now.AddMonths(1).ToString();
+                }
+                else
+                    rnDate = "na";
+
+                memType.RenewalDate = rnDate;
+                memType.GymLocation = g;
 
                 count += dao.Insert(memType);
                 //Response.Write(dao.message);
@@ -70,7 +88,9 @@ namespace CA_Gym.Controllers
             //string t = Request.Form["MemTypeList"]!=null?Request.Form["MemTypeList"].ToString():null;
             //ViewBag.TitleList = dao.GetMemberType();
             //  int memTypeID = dao.getMemTypeIDFromDropDown(t);
-            
+
+            string g = Request.Form["GenderList"].ToString();
+            member.Gender = g;
             int result = dao.GetMemTypeID();
             int count = 0;
             if (ModelState.IsValid)
@@ -105,6 +125,7 @@ namespace CA_Gym.Controllers
             ModelState.Remove("Age");
             ModelState.Remove("Phone");
             ModelState.Remove("Address");
+            ModelState.Remove("ConfirmPassword");
 
             if (ModelState.IsValid)
             {

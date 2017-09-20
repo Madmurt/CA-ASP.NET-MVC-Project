@@ -171,7 +171,7 @@ namespace CA_Gym.Models
             cmd = new SqlCommand("uspInsertBookingTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@classID", classID);
-            cmd.Parameters.AddWithValue("@memberID", memberID); //Use logged in member ID.
+            cmd.Parameters.AddWithValue("@memberID", memberID);
             cmd.Parameters.AddWithValue("@date", book.Date);
             cmd.Parameters.AddWithValue("@time", classTime); 
 
@@ -192,7 +192,7 @@ namespace CA_Gym.Models
             return count;
         }
 
-        public int Insert(PTSession ptSess, int memberID, int trainerID)
+        public int Insert(PTSession ptSess)
         {
             //count shows the number of affected rows
             int count = 0;
@@ -200,10 +200,10 @@ namespace CA_Gym.Models
             Connection();
             cmd = new SqlCommand("uspInsertPTSessionTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@trainerID", trainerID);
-            cmd.Parameters.AddWithValue("@memberID", memberID); //Use logged in member ID.
+            cmd.Parameters.AddWithValue("@trainerID", ptSess.TrainerID);
+            cmd.Parameters.AddWithValue("@memberID", ptSess.MemberID);
             cmd.Parameters.AddWithValue("@sessionLength", ptSess.SessionLength);
-            cmd.Parameters.AddWithValue("@sesionDate", ptSess.SessionDate);
+            cmd.Parameters.AddWithValue("@sessionDate", ptSess.SessionDate);
             cmd.Parameters.AddWithValue("@sessionTime", ptSess.SessionTime);
             cmd.Parameters.AddWithValue("@sessType", ptSess.SessType);
             cmd.Parameters.AddWithValue("@Cost", ptSess.Cost);
@@ -324,6 +324,38 @@ namespace CA_Gym.Models
             return memberList;
         }
 
+        public List<string> GetGymLocation()
+        {
+            List<string> gymList = new List<string>();
+
+            SqlCommand cmd;
+            SqlDataReader reader;
+            Connection();
+            cmd = new SqlCommand("uspGetGymLocation", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string result = reader["GymLocation"].ToString();
+                    gymList.Add(result);
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return gymList;
+        }
+
         public int getTrainerIDFromDropDown(string trainerName)
         {
             int result = 0;
@@ -397,6 +429,35 @@ namespace CA_Gym.Models
                 while (reader.Read())
                 {
                     result = reader["Time"].ToString();
+                }
+            }
+            catch (SqlException ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return result;
+        }
+
+        public int getMemberIDFromSession(string email)
+        {
+            int result = 0;
+            SqlDataReader reader;
+            Connection();
+
+            SqlCommand cmd = new SqlCommand("SELECT MemberID From Member WHERE Email = '" + email + "'", conn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result = int.Parse(reader["MemberID"].ToString());
                 }
             }
             catch (SqlException ex)
