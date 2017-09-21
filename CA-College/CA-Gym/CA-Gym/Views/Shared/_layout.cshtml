@@ -56,6 +56,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item">
                     @Html.ActionLink("Login", "Login", "User", null, new { @class = "nav-link" })
                 </li>
@@ -67,6 +68,18 @@
         else if (Session["id"].ToString() == "Member")
         {
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("Classes", "Classes", "Classes", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Exercise", "Exercise", "Exercise", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Nutrition", "Nutrition", "Nutrition", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Meet Our Trainers", "Trainers", "Trainers", null, new { @class = "nav-link" })
+                </li>
                 <li class="nav-item">
                     @Html.ActionLink("Book a Class", "AddBooking", "Classes", null, new { @class = "nav-link" })
                 </li>

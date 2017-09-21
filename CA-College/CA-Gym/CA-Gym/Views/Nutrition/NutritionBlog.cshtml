@@ -4,18 +4,34 @@
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
-<h2>NutritionBlog</h2>
-<section>
 
-    <h5>Add Your own Nutrional Advice for Others</h5>
-    @using (Html.BeginForm("NutritionBlog", "Nutrition", FormMethod.Post))
-    {
-        @Html.ValidationSummary(false, "", new { @class = "error" })
-        <p>
-            @Html.LabelFor(c => c.Advice)
-            @Html.TextAreaFor(c => c.Advice, new { @rows = 4, @cols = 50 })
-        </p>
-        <input type="submit" value="Submit" />
-        }
+<header id="page-header-nutrtion">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto text-center">
+                <h1 class="display-4">Add Your Own Nutrition Tips</h1>
+               
+
+            </div>
+        </div>
+    </div>
+</header>
+<section class="container">
+    <div class="row justify-content-center mt-5 mb-5">
+        <div class="col-md-6">>
+            @using (Html.BeginForm("NutritionBlog", "Nutrition", FormMethod.Post, new { @class = "form-group"}))
+            {
+                @Html.ValidationSummary(false, "", new { @class = "error" })
+                <p>
+                    @Html.LabelFor(c => c.Advice)
+                    @Html.TextAreaFor(c => c.Advice, new { @rows = 4, @cols = 50 , @class = "form-control" })
+                </p>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            }
+        </div>
+
+    </div>
+    
 </section>
 

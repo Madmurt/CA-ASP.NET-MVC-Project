@@ -10,14 +10,14 @@
             @using (Html.BeginForm("AddClass", "Classes", FormMethod.Post))
             {
                 <form class="form-group ">
-                    <h2 class="display-4 py-3 mt-4">Add New Class</h2>
+                    <h2 class="display-4 py-3 mt-4 text-center">Add New Class</h2>
                     @Html.ValidationSummary(false, "", new { @class = "error" })
 
                     
                     <div class="form-group row">
-                        @Html.LabelFor(c => c.TrainerID, new { @class = "col-sm-2 col-form-label" })
-                        <div class="col-sm-10">
-                            @Html.DropDownList("TrainerList", new SelectList((List<string>)ViewBag.TrainerList))
+                        @Html.LabelFor(c => c.TrainerID, new { @class = "col-md-4 col-form-label" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("TrainerList", new SelectList((List<string>)ViewBag.TrainerList), new { @class="custom-select" })
                             <div class="col-sm-10">
                                 <p>@ViewBag.TrainerID</p>
                             </div>
@@ -25,35 +25,35 @@
                     </div>
 
                     <div class="form-group row">
-                        @Html.LabelFor(c => c.Time, new { @class = "col-sm-2 col-form-label" })
-                        <div class="col-sm-10">
+                        @Html.LabelFor(c => c.Time, new { @class = "col-md-4 col-form-label" })
+                        <div class="col--md-8">
                             @Html.TextBoxFor(c => c.Time, new { @class = "form-control" })
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        @Html.LabelFor(c => c.ClassType, new { @class = "col-sm-2 col-form-label" })
-                        <div class="col-sm-10">
+                        @Html.LabelFor(c => c.ClassType, new { @class = "col-md-4 col-form-label" })
+                        <div class="col-md-8">
                             @Html.TextBoxFor(c => c.ClassType, new { @class = "form-control" })
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        @Html.LabelFor(c => c.Location, new { @class = "col-sm-2 col-form-label" })
-                        <div class="col-sm-10">
+                        @Html.LabelFor(c => c.Location, new { @class = "col-md-4 col-form-label" })
+                        <div class="col-md-8">
                             @Html.TextBoxFor(c => c.Location, new { @class = "form-control" })
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        @Html.LabelFor(c => c.MaxMembers, new { @class = "col-sm-2 col-form-label" })
-                        <div class="col-sm-10">
+                        @Html.LabelFor(c => c.MaxMembers, new { @class = "col-md-4 col-form-label" })
+                        <div class="col-md-8">
                             @Html.TextBoxFor(c => c.MaxMembers, new { @class = "form-control" })
                         </div>
                     </div>
 
-                    <input id="Submit1" type="submit" value="Add Class" class="btn btn-success" />
-                    <input id="Reset1" type="reset" value="Clear Form" class="btn btn-danger" />
+                    <input id="Submit1" type="submit" value="Add Class" class="btn btn-success mt-3 mb-5 mr-3" />
+                    <input id="Reset1" type="reset" value="Clear Form" class="btn btn-danger mt-3 mb-5" />
 
                 </form>
             }

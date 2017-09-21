@@ -14,10 +14,10 @@ namespace CA_Gym.Controllers
         static DataSet ds;
         static DataTable dt;
 
-        public ActionResult Nutrition()
-        {
-            return View();
-        }
+        //public ActionResult Nutrition()
+        //{
+        //    return View();
+        //}
 
         [HttpGet]
         public ActionResult NutritionBlog()
@@ -59,7 +59,7 @@ namespace CA_Gym.Controllers
         }
 
         [HttpGet]
-        public ActionResult NutritionFeedback()
+        public ActionResult Nutrition()
         {
             List<Nutrition> nutritionIdeasList = new List<Nutrition>();
             if (System.IO.File.Exists(Server.MapPath("~/App_Data/NutritionBlog.xml")))

@@ -9,13 +9,18 @@
         <div class="col-md-8">
             <h2 class="display-4 text-center">User Nutrition Ideas and Feedback</h2>
             @foreach (Nutrition n in Model)
-            {
-                <p>
-                    @n.Name<br />
-                </p>
-                <p>@n.Advice</p>
-                <hr />
-            }
+        {
+            <div class="card card-danger card-inverse p-3 my-3">
+                <blockquote class="card-body card-blockquote">
+                    <p> @n.Advice</p>
+                    <footer>
+                        <small>
+                            @n.Name in <cite title="Source Title">Member Advice</cite>
+                        </small>
+                    </footer>
+                </blockquote>
+            </div>
+        }
         </div>
     </div>
 </div>

@@ -4,32 +4,43 @@
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
+<header id="page-header">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto text-center">
+                <h1 class="pt-2 display-4">Book A Class Below</h1>
+
+            </div>
+        </div>
+    </div>
+</header>
+
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center my-5">
         <div class="col-md-6 offset-md-3">
             @using (Html.BeginForm("AddBooking", "Classes", FormMethod.Post))
             {
                 <form class="form-group ">
-                    <h2 class="display-4 py-3 mt-4">Book a Class</h2>
                     @Html.ValidationSummary(false, "", new { @class = "error" })
 
 
                     <div class="form-group row">
-                        @Html.Label("Classes: ", new { @class = "col-sm-2 col-form-label" })
-                        <div class="col-sm-10">
-                            @Html.DropDownList("ClassList", new SelectList((List<string>)ViewBag.ClassList))
+                        @Html.Label("Classes: ", new { @class = "col-md-4 col-form-label" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("ClassList", new SelectList((List<string>)ViewBag.ClassList), new {@class = "custom-select" })
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        @Html.LabelFor(b => b.Date, new { @class = "col-sm-2 col-form-label" })
-                        <div class="col-sm-10">
+                        @Html.LabelFor(b => b.Date, new { @class = "col-md-4 col-form-label" })
+                        <div class="col-md-8">
                             @Html.TextBoxFor(b => b.Date, new { @class = "form-control" })
                         </div>
                     </div>
 
-                    <input id="Submit1" type="submit" value="Book Class" class="btn btn-success" />
-                    <input id="Reset1" type="reset" value="Clear Form" class="btn btn-danger" />
+                    <input id="Submit1" type="submit" value="Book Class" class="btn btn-success mr-3 mb-5 mt-3 " />
+                    <input id="Reset1" type="reset" value="Clear Form" class="btn btn-danger mb-5 mt-3" />
 
                 </form>
             }

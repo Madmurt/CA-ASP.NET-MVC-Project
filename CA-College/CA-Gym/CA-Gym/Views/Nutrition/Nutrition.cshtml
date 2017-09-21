@@ -1,4 +1,5 @@
-﻿
+﻿@using CA_Gym.Models
+@model IEnumerable<Nutrition>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_layout.cshtml";
@@ -127,6 +128,24 @@
                             </p>
                         </div>
                     </div>
+
+                    @foreach (Nutrition n in Model)
+                    {
+                        <div class="card card-danger card-inverse p-3">
+                            <blockquote class="card-body card-blockquote">
+                                <p> @n.Advice</p>
+                                <footer>
+                                    <small>
+                                        @n.Name in <cite title="Source Title">Member Advice</cite>
+                                    </small>
+                                </footer>
+                            </blockquote>
+                        </div>
+                    }
+                    
+
+
+
                 </div>
             </div>
         </div>
