@@ -1,0 +1,24 @@
+﻿@using CA_Gym.Models
+@model IEnumerable<Nutrition>
+@{
+    ViewBag.Title = "NutritionFeedback";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+<div class="container">
+    <div class="row justify-content-center mt-5 pt-5">
+        <div class="col-md-8">
+            <h2 class="display-4 text-center">User Nutrition Ideas and Feedback</h2>
+            @foreach (Nutrition n in Model)
+            {
+                <p>
+                    @n.Name<br />
+                </p>
+                <p>@n.Advice</p>
+                <hr />
+            }
+        </div>
+    </div>
+</div>
+
+
+

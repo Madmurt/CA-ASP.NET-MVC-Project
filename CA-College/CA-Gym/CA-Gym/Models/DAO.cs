@@ -648,13 +648,13 @@ namespace CA_Gym.Models
         //    return result;
         //}
 
-        public Member getMemberObject(string email, string memPass)
+        public Member getMemberObject(string email)
         {
             Member result = null;
             SqlDataReader reader;
             Connection();
 
-            SqlCommand cmd = new SqlCommand("SELECT * From Member WHERE Email = '" + email + "' AND MemPass = '" + memPass + "'" , conn);
+            SqlCommand cmd = new SqlCommand("SELECT * From Member WHERE Email = '" + email + "'" , conn);
             //cmd.CommandType = CommandType.StoredProcedure;
             try
             {

@@ -97,10 +97,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\contact.xml" />
     <Content Include="App_Data\Gym_Database.mdf" />
     <Content Include="App_Data\Gym_Database_log.ldf">
       <DependentUpon>Gym_Database.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\NutritionBlog.xml" />
     <Content Include="Content\flaticon.css" />
     <Content Include="Content\fonts\flaticon.html" />
     <Content Include="Content\fonts\Flaticon.svg" />
@@ -168,6 +170,7 @@
     <Compile Include="Models\DAO.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberShipType.cs" />
+    <Compile Include="Models\Nutrition.cs" />
     <Compile Include="Models\PTSession.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Trainer.cs" />
@@ -203,6 +206,10 @@
     <Content Include="Views\Classes\StatusBook.cshtml" />
     <Content Include="Views\Classes\AddPTSession.cshtml" />
     <Content Include="Views\Classes\StatusPT.cshtml" />
+    <Content Include="Views\Nutrition\Advice.cshtml" />
+    <Content Include="Views\Nutrition\NutritionFeedBack.cshtml" />
+    <Content Include="Views\Nutrition\NutritionBlog.cshtml" />
+    <Content Include="Views\Contact\StatusC.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

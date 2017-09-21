@@ -73,6 +73,9 @@
                 <li class="nav-item">
                     @Html.ActionLink("Book a PT Session", "AddPTSession", "Classes", null, new { @class = "nav-link" })
                 </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Create Nutrition Blog Post", "NutritionBlog", "Nutrition", null, new { @class = "nav-link" })
+                </li>
                 
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -90,6 +93,9 @@
                 <li class="nav-item">
                     @Html.ActionLink("AddClasses", "AddClass", "Classes", null, new { @class = "nav-link" })
                 </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Show Nutritional Blogs", "NutritionFeedback", "Nutrition", null, new { @class = "nav-link" })
+                </li>
              </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -106,7 +112,7 @@
 
     
 
-    @RenderBody();
+    @RenderBody()
     <footer id="main-footer" class="text-center p-4 footer">
         <div class="container">
             <div class="row">

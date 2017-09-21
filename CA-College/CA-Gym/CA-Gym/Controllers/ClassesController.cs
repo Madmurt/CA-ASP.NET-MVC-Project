@@ -90,6 +90,7 @@ namespace CA_Gym.Controllers
         {
             ViewBag.TrainerList = dao.GetTrainerName();
             ViewBag.LocationList = dao.GetGymLocation();
+            ViewBag.HourList = new List<int> { 1, 2, 3, 4};
             ViewBag.TypeList = new List<string> {"Strength","Cardio","Yoga","Pilates","Mobility", "Specialised"};
 
             return View();
@@ -101,13 +102,15 @@ namespace CA_Gym.Controllers
             string t = Request.Form["TrainerList"].ToString();
             string g = Request.Form["LocationList"].ToString();
             string type = Request.Form["TypeList"].ToString();
-            int c = int.Parse(pt.SessionLength) * 20;
+            string hour = Request.Form["HourList"].ToString();
+            int c = int.Parse(hour) * 20;
 
             int count = 0;
 
             pt.TrainerID = dao.getTrainerIDFromDropDown(t);
             pt.MemberID = dao.getMemberIDFromSession(Session["email"].ToString());
             pt.SessLocation = g;
+            pt.SessionLength = hour + " hour(s)";
             pt.SessType = type;
             pt.Cost = c;
 

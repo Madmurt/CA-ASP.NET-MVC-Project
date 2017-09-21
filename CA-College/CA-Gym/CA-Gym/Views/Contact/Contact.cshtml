@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6 offset-md-3">
-                <form class="form-group">
+                @*<form class="form-group">
                     <label for="name">Name</label>
                     <input type="text" name="" placeholder="Your name..." class="form-control" required>
 
@@ -36,7 +36,24 @@
                     <textarea rows="5" class="form-control" placeholder="Your message here..."></textarea>
 
                     <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
-                </form>
+                </form>*@
+                @using (Html.BeginForm("Contact", "Contact", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(false, "", new { @class = "error" })
+                    <p>
+                        @Html.Label("Name")
+                        @Html.TextBox("name")
+                    </p>
+                    <p>
+                        @Html.Label("Email")
+                        @Html.TextBox("email")
+                    </p>
+                    <p>
+                        @Html.Label("Message")
+                        @Html.TextArea("comments", new { @rows = 4, @cols = 50 })
+                    </p>
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block mt-3" />
+                }
             </div>
         </div>
     </div>

@@ -1,0 +1,21 @@
+﻿@model CA_Gym.Models.Nutrition
+@{
+    ViewBag.Title = "NutritionBlog";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>NutritionBlog</h2>
+<section>
+
+    <h5>Add Your own Nutrional Advice for Others</h5>
+    @using (Html.BeginForm("NutritionBlog", "Nutrition", FormMethod.Post))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "error" })
+        <p>
+            @Html.LabelFor(c => c.Advice)
+            @Html.TextAreaFor(c => c.Advice, new { @rows = 4, @cols = 50 })
+        </p>
+        <input type="submit" value="Submit" />
+        }
+</section>
+

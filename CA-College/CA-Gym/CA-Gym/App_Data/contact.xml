@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="yes"?>
+<contact>
+  <user_contact>
+    <name>Jim</name>
+    <email>jim@jim.ie</email>
+    <comments>I have a good Gym!</comments>
+  </user_contact>
+  <user_contact>
+    <name>Fredrick</name>
+    <email>freddywest@mpack.com</email>
+    <comments>I have a deal i would like to broker with you. Lots of monies!</comments>
+  </user_contact>
+</contact>

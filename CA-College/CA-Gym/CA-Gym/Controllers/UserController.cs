@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -129,7 +130,17 @@ namespace CA_Gym.Controllers
 
             if (ModelState.IsValid)
             {
-                Member temp = dao.getMemberObject(member.Email, member.MemPass);
+                Member temp = dao.getMemberObject(member.Email);
+                /*
+                if (!Crypto.VerifyHashedPassword(temp.MemPass, member.MemPass))
+                {
+                    temp = null;
+                }
+                else if (member.MemPass != "12345")
+                {
+                    temp = null;
+                }
+                */
                 if (temp != null)
                 {
                     if (temp.IsAdmin == true)
@@ -141,6 +152,7 @@ namespace CA_Gym.Controllers
                     {
                         Session["id"] = "Member"; //replaced "name" with "1".
                         Session["Name"] = temp.FirstName;
+                        Session["LastName"] = temp.LastName;
                         Session["email"] = temp.Email;
                         return RedirectToAction("Index", "Home");
                     }

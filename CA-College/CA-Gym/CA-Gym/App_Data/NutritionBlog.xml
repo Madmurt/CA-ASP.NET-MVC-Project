@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="yes"?>
+<Nutrition>
+  <user_nutrition>
+    <name>Mary</name>
+    <advice>This is advice for the weak and poor:
+
+1. Don't be weak.
+2. Don't be poor.</advice>
+  </user_nutrition>
+  <user_nutrition>
+    <name>Ted Danson</name>
+    <advice>Advice for Martin:
+
+Have a fun night of coding :)</advice>
+  </user_nutrition>
+</Nutrition>
