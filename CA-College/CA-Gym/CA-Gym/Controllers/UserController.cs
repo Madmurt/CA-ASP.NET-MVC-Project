@@ -28,7 +28,7 @@ namespace CA_Gym.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            ViewBag.GenderList = new List<string> { "Male", "Female" };
+            ViewBag.GenderList = new List<string> { "M", "F" };
             return View(); 
         }
 

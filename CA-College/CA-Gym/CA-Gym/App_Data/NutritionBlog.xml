@@ -29,4 +29,8 @@ Have a fun night of coding :)</advice>
     <name>Mary Jane</name>
     <advice>I like Food</advice>
   </user_nutrition>
+  <user_nutrition>
+    <name>Mary Jane</name>
+    <advice>This is my advice: Eat your vegetables!</advice>
+  </user_nutrition>
 </Nutrition>

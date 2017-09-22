@@ -24,7 +24,7 @@ namespace CA_Gym.Models
             int count = 0;
 
             SqlCommand cmd;
-            string password;
+            //string password;
             Connection();
             cmd = new SqlCommand("uspInsertMemberTable", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -47,8 +47,8 @@ namespace CA_Gym.Models
             cmd.Parameters.AddWithValue("@phone", user.Phone);
             cmd.Parameters.AddWithValue("@address", user.MemAddress);
             cmd.Parameters.AddWithValue("@isAdmin", user.IsAdmin);
-            password = Crypto.HashPassword(user.MemPass);
-            cmd.Parameters.AddWithValue("@memPass", password);
+            //password = Crypto.HashPassword(user.MemPass); - Need to add unhashing when logging in
+            cmd.Parameters.AddWithValue("@memPass", user.MemPass);
             cmd.Parameters.AddWithValue("@memTypeID", result);
 
             try
