@@ -144,6 +144,7 @@
     <Content Include="Content\Images\person7.jpg" />
     <Content Include="Content\Images\person8.jpg" />
     <Content Include="Content\Images\person9.jpg" />
+    <Content Include="Content\Images\runner.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\main.js" />

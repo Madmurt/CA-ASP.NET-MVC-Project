@@ -25,33 +25,20 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6 offset-md-3">
-                @*<form class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="" placeholder="Your name..." class="form-control" required>
-
-                    <label for="email">Email</label>
-                    <input type="text" name="" placeholder="joe@test.com" class="form-control" required>
-
-                    <label for="message">Message</label>
-                    <textarea rows="5" class="form-control" placeholder="Your message here..."></textarea>
-
-                    <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
-                </form>*@
-                @using (Html.BeginForm("Contact", "Contact", FormMethod.Post))
+                
+                @using (Html.BeginForm("Contact", "Contact", FormMethod.Post, new { @class="form-group"}))
                 {
                     @Html.ValidationSummary(false, "", new { @class = "error" })
-                    <p>
+                    
                         @Html.Label("Name")
-                        @Html.TextBox("name")
-                    </p>
-                    <p>
+                        @Html.TextBox("name", null, new { @class="form-control"})
+                    
                         @Html.Label("Email")
-                        @Html.TextBox("email")
-                    </p>
-                    <p>
+                        @Html.TextBox("email", null,new { @class = "form-control" })
+                    
                         @Html.Label("Message")
-                        @Html.TextArea("comments", new { @rows = 4, @cols = 50 })
-                    </p>
+                        @Html.TextArea("comments", new { @rows = 4, @cols = 50, @class="form-control" })
+                    
                     <input type="submit" value="Submit" class="btn btn-primary btn-block mt-3" />
                 }
             </div>
