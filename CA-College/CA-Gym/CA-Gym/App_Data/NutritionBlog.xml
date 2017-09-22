@@ -17,4 +17,16 @@ Have a fun night of coding :)</advice>
     <name>Mary Jane</name>
     <advice>Food is good</advice>
   </user_nutrition>
+  <user_nutrition>
+    <name>Mary Jane</name>
+    <advice>Food is great!</advice>
+  </user_nutrition>
+  <user_nutrition>
+    <name>Mary Jane</name>
+    <advice>I like Food</advice>
+  </user_nutrition>
+  <user_nutrition>
+    <name>Mary Jane</name>
+    <advice>I like Food</advice>
+  </user_nutrition>
 </Nutrition>
